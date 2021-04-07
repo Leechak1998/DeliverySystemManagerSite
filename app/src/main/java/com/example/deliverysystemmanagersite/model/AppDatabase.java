@@ -1,4 +1,4 @@
-package com.example.deliverysystemmanagersite.Test;
+package com.example.deliverysystemmanagersite.model;
 
 import androidx.room.Database;
 import androidx.room.RoomDatabase;

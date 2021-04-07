@@ -1,20 +1,18 @@
 package com.example.deliverysystemmanagersite;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Room;
-
 import android.os.Bundle;
-import android.widget.TextView;
 
-import com.example.deliverysystemmanagersite.Test.AppDatabase;
-import com.example.deliverysystemmanagersite.Test.User;
-import com.example.deliverysystemmanagersite.Test.UserDao;
+import android.view.View;
+import com.example.deliverysystemmanagersite.controller.LoginFragment;
+import com.example.deliverysystemmanagersite.controller.RegisterFragment;
+import com.example.deliverysystemmanagersite.model.myDatabase;
 
-import java.util.List;
+import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends AppCompatActivity{
-    TextView textView;
-    AppDatabase db;
+public class MainActivity extends AppCompatActivity {
+    private LoginFragment LoginFra;
+    private RegisterFragment RegisFra;
+    public static myDatabase mdb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,29 +22,32 @@ public class MainActivity extends AppCompatActivity{
     }
 
     public void init(){
-        textView = (TextView)findViewById(R.id.tv);
-        textView.setText("test!!");
+        LoginFra = new LoginFragment();
+        RegisFra = new RegisterFragment();
+        mdb = new myDatabase(getApplicationContext());
+        getSupportFragmentManager().beginTransaction().add(R.id.frameLayout, LoginFra).commitAllowingStateLoss();
 
-        //增删改查都需要在子线程操作
-        new Thread(() -> {
-            db = Room.databaseBuilder(getApplicationContext(),
-                    AppDatabase.class, "database-name").build();
-
-            //增加数据测试
-            for (int i = 0; i < 10; i++) {
-                User user = new User();
-                user.setUid(i);
-                user.setFirstName("Shell" + i);
-                db.userDao().insertAll(user);
+        //2、调用对象的set方法，回传接口对象
+        LoginFra.setOnButtonClick(new LoginFragment.OnButtonClick() {
+            //3、实现接口对象的方法，
+            @Override
+            public void onClicking(View view) {
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frameLayout,RegisFra)
+                        .commit();
             }
+        });
 
-            for (User user : db.userDao().getAll()) {
-                System.out.println(user);
+        RegisFra.setOnButtonClick(new RegisterFragment.OnButtonClick() {
+            @Override
+            public void onClicking(View view) {
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frameLayout,LoginFra)
+                        .commit();
             }
+        });
 
-        }).start();
 
     }
-
 
 }

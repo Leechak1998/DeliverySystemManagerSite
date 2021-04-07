@@ -1,4 +1,4 @@
-package com.example.deliverysystemmanagersite.Test;
+package com.example.deliverysystemmanagersite.model;
 
 
 import java.util.List;
@@ -17,8 +17,14 @@ public interface UserDao {
     @Query("SELECT * FROM user WHERE uid IN (:userIds)")
     List<User> loadAllByIds(int[] userIds);
 
-    @Query("SELECT * FROM user WHERE first_name LIKE :first LIMIT 1")
-    User findByName(String first);
+    @Query("SELECT * FROM user WHERE user_name LIKE :name")
+    User findByName(String name);
+
+    @Query("SELECT * FROM user WHERE user_name LIKE :username AND user_psw LIKE :password")
+    User checkUser(String username, String password);
+
+    @Query("SELECT * FROM user WHERE uid LIKE :uid")
+    User checkUid(int uid);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     //void insertAll(List<User> users);
