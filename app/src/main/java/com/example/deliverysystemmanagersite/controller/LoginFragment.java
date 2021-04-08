@@ -1,8 +1,11 @@
 package com.example.deliverysystemmanagersite.controller;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Looper;
+import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +29,20 @@ public class LoginFragment extends Fragment {
     public AppDatabase db;
     private View view;
     private OnButtonClick onButtonClick;
-    private String toastFlag = "default";
+
+    private static final int SUCCESS = 1;
+    private static final int FAILURE = 0;
+
+    private Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg){
+            if (msg.what == SUCCESS){
+                Toast.makeText(getActivity(),"Success",Toast.LENGTH_LONG).show();
+            } else if(msg.what == FAILURE){
+                Toast.makeText(getActivity(),"Invalid email or password. Check again!",Toast.LENGTH_LONG).show();
+            }
+        }
+    };
 
     @Nullable
     @Override
@@ -43,24 +59,31 @@ public class LoginFragment extends Fragment {
         btnLogin = (Button)view.findViewById(R.id.btnLogin);
         btnRegister = (Button)view.findViewById(R.id.btnRegister);
 
-
+        db = MainActivity.mdb.getDb();
     }
 
     public void btnListener(){
-        btnRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (onButtonClick != null) {
-                    onButtonClick.onClicking(btnRegister);
-                }
+        btnRegister.setOnClickListener(view -> {
+            if (onButtonClick != null) {
+                onButtonClick.onClicking(btnRegister);
             }
         });
 
         btnLogin.setOnClickListener(view -> {
-            db = MainActivity.mdb.getDb();
             //Validate username and password
-            new Thread(() -> toastFlag = checkUser(etUsername.getText().toString(), etPassword.getText().toString())).start();
-            Toast.makeText(getActivity(),toastFlag,Toast.LENGTH_LONG).show();
+            new Thread(() -> {
+                Message msg;
+                if ("Success".equals(checkUser(etUsername.getText().toString(), etPassword.getText().toString()))){
+                    msg = new Message();
+                    msg.what = SUCCESS;
+                    handler.sendMessage(msg);
+                } else {
+                    msg = new Message();
+                    msg.what = FAILURE;
+                    handler.sendMessage(msg);
+                }
+
+            }).start();
         });
     }
 

@@ -10,7 +10,7 @@ public class myDatabase {
 
     public myDatabase(Context c){
         this.context = c;
-        db = Room.databaseBuilder(context, AppDatabase.class, "database-name-test1").build();
+        db = Room.databaseBuilder(context, AppDatabase.class, "database-name-test2").build();
         System.out.println("database created successfully!");
     }
 
