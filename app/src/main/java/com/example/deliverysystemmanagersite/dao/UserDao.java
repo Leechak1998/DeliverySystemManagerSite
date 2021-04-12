@@ -1,5 +1,7 @@
-package com.example.deliverysystemmanagersite.model;
+package com.example.deliverysystemmanagersite.dao;
 
+
+import com.example.deliverysystemmanagersite.model.User;
 
 import java.util.List;
 
@@ -20,7 +22,7 @@ public interface UserDao {
     @Query("SELECT * FROM user WHERE user_name LIKE :name")
     User findByName(String name);
 
-    @Query("SELECT * FROM user WHERE user_name LIKE :username AND user_psw LIKE :password")
+    @Query("SELECT * FROM user WHERE user_name = :username AND user_psw = :password")
     User checkUser(String username, String password);
 
     @Query("SELECT * FROM user WHERE uid LIKE :uid")

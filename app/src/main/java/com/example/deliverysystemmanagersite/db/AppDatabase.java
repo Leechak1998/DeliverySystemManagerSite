@@ -1,4 +1,7 @@
-package com.example.deliverysystemmanagersite.model;
+package com.example.deliverysystemmanagersite.db;
+
+import com.example.deliverysystemmanagersite.model.User;
+import com.example.deliverysystemmanagersite.dao.UserDao;
 
 import androidx.room.Database;
 import androidx.room.RoomDatabase;

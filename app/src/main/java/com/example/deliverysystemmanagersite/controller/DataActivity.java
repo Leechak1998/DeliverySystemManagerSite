@@ -3,12 +3,13 @@ package com.example.deliverysystemmanagersite.controller;
 import android.os.Bundle;
 
 import com.example.deliverysystemmanagersite.R;
-import com.example.deliverysystemmanagersite.model.AppDatabase;
+import com.example.deliverysystemmanagersite.db.AppDatabase;
 import com.example.deliverysystemmanagersite.model.User;
-import com.example.deliverysystemmanagersite.model.myDatabase;
+import com.example.deliverysystemmanagersite.db.myDatabase;
+
+import java.sql.DriverManager;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Room;
 
 public class DataActivity extends AppCompatActivity {
     AppDatabase db;
@@ -23,7 +24,7 @@ public class DataActivity extends AppCompatActivity {
 
     public void init(){
         //增删改查都需要在子线程操作
-
+//        java.sql.Connection cn = DriverManager.getConnection();
 
         new Thread(() -> {
 //            db = Room.databaseBuilder(getApplicationContext(),

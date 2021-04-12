@@ -1,10 +1,8 @@
-package com.example.deliverysystemmanagersite.controller;
+package com.example.deliverysystemmanagersite.controller.fragment;
 
-import android.content.Context;
-import android.graphics.Color;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
 import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,8 +13,8 @@ import android.widget.Toast;
 
 import com.example.deliverysystemmanagersite.MainActivity;
 import com.example.deliverysystemmanagersite.R;
-import com.example.deliverysystemmanagersite.model.AppDatabase;
-import com.example.deliverysystemmanagersite.model.User;
+import com.example.deliverysystemmanagersite.controller.activity.HomeActivity;
+import com.example.deliverysystemmanagersite.db.AppDatabase;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -77,6 +75,8 @@ public class LoginFragment extends Fragment {
                     msg = new Message();
                     msg.what = SUCCESS;
                     handler.sendMessage(msg);
+                    Intent intent = new Intent(getActivity(), HomeActivity.class);
+                    startActivity(intent);
                 } else {
                     msg = new Message();
                     msg.what = FAILURE;

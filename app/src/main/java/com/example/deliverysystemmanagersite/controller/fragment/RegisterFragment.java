@@ -1,4 +1,4 @@
-package com.example.deliverysystemmanagersite.controller;
+package com.example.deliverysystemmanagersite.controller.fragment;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import com.example.deliverysystemmanagersite.MainActivity;
 import com.example.deliverysystemmanagersite.R;
-import com.example.deliverysystemmanagersite.model.AppDatabase;
+import com.example.deliverysystemmanagersite.db.AppDatabase;
 import com.example.deliverysystemmanagersite.model.User;
 
 import androidx.annotation.Nullable;
@@ -52,7 +52,6 @@ public class RegisterFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate( R.layout.fragment_register, null);
-
         init();
         Listener();
         return view;
@@ -89,6 +88,7 @@ public class RegisterFragment extends Fragment {
         btnCan.setOnClickListener(view -> {
             if (onButtonClick != null) {
                 onButtonClick.onClicking(btnCan);
+                System.out.println("toString: "+onButtonClick.toString());
             }
         });
 
@@ -168,8 +168,5 @@ public class RegisterFragment extends Fragment {
     public void setOnButtonClick(OnButtonClick onButtonClick) {
         this.onButtonClick = onButtonClick;
     }
-
-
-
 
 }

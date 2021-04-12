@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:layout_below="@id/ly"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvId"
+            android:layout_width="0dp"
+            android:layout_weight="7"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:text="Order Number: 124224521"
+            android:padding="10dp"/>
+
+        <TextView
+            android:id="@+id/tvDriver"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/tvId"
+            android:textSize="15dp"
+            android:text="Driver: C"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ly"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvVendor"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ly"
+            android:text="From: A"
+            android:textSize="20dp"
+            android:paddingLeft="10dp"
+            android:gravity="center"
+            android:lines="1"
+            android:ellipsize="end"/>
+
+        <ImageView
+            android:id="@+id/iv"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ly"
+            android:layout_toRightOf="@id/tvVendor"
+            android:src="@drawable/ic_arrow_black"/>
+
+        <TextView
+            android:id="@+id/tvDestination"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ly"
+            android:layout_toRightOf="@id/iv"
+            android:textSize="20dp"
+            android:text="To: B"
+            android:paddingRight="10dp"
+            android:gravity="center"
+            android:lines="1"
+            android:ellipsize="end"/>
+    </LinearLayout>
+
+</RelativeLayout>

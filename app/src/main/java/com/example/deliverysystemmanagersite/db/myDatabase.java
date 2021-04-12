@@ -1,4 +1,4 @@
-package com.example.deliverysystemmanagersite.model;
+package com.example.deliverysystemmanagersite.db;
 
 import android.content.Context;
 

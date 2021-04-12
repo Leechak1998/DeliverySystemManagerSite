@@ -1,4 +1,4 @@
-plugins {
+    plugins {
     id 'com.android.application'
 }
 
@@ -7,7 +7,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.deliverysystemmanagersite"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -39,6 +39,11 @@ dependencies {
 
 dependencies {
 
+    implementation 'androidx.vectordrawable:vectordrawable:1.1.0'
+    implementation 'androidx.navigation:navigation-fragment:2.3.4'
+    implementation 'androidx.navigation:navigation-ui:2.3.4'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     def room_version = "2.2.6"
 

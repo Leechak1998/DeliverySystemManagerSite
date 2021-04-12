@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_package"
+        android:icon="@drawable/ic_packages_black"
+        android:title="@string/title_package" />
+
+    <item
+        android:id="@+id/navigation_driver"
+        android:icon="@drawable/ic_driver_black"
+        android:title="@string/title_driver" />
+
+    <item
+        android:id="@+id/navigation_vendor"
+        android:icon="@drawable/ic_vendor_black"
+        android:title="@string/title_vendor" />
+
+    <item
+        android:id="@+id/navigation_site"
+        android:icon="@drawable/ic_site_black"
+        android:title="@string/title_site" />
+
+</menu>

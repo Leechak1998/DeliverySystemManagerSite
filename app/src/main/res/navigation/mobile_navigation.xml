@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_package">
+
+    <fragment
+        android:id="@+id/navigation_package"
+        android:name="com.example.deliverysystemmanagersite.controller.fragment.PackageFragment"
+        android:label="@string/title_package"
+        tools:layout="@layout/fragment_package" >
+        <action
+            android:id="@+id/action_navigation_package_to_navigation_packageDetails2"
+            app:destination="@id/navigation_packageDetails" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_packageDetails"
+        android:name="com.example.deliverysystemmanagersite.controller.fragment.PackageDetailsFragment"
+        android:label="@string/title_package_detail"
+        tools:layout="@layout/fragment_package_details" />
+
+    <fragment
+        android:id="@+id/navigation_driver"
+        android:name="com.example.deliverysystemmanagersite.controller.fragment.DriverFragment"
+        android:label="@string/title_driver"
+        tools:layout="@layout/fragment_driver" />
+
+    <fragment
+        android:id="@+id/navigation_vendor"
+        android:name="com.example.deliverysystemmanagersite.controller.fragment.VendorFragment"
+        android:label="@string/title_vendor"
+        tools:layout="@layout/fragment_vendor" />
+
+    <fragment
+        android:id="@+id/navigation_site"
+        android:name="com.example.deliverysystemmanagersite.controller.fragment.SiteFragment"
+        android:label="@string/title_site"
+        tools:layout="@layout/fragment_site" />
+</navigation>

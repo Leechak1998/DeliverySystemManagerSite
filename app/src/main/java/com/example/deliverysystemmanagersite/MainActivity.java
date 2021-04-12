@@ -3,9 +3,9 @@ package com.example.deliverysystemmanagersite;
 import android.os.Bundle;
 
 import android.view.View;
-import com.example.deliverysystemmanagersite.controller.LoginFragment;
-import com.example.deliverysystemmanagersite.controller.RegisterFragment;
-import com.example.deliverysystemmanagersite.model.myDatabase;
+import com.example.deliverysystemmanagersite.controller.fragment.LoginFragment;
+import com.example.deliverysystemmanagersite.controller.fragment.RegisterFragment;
+import com.example.deliverysystemmanagersite.db.myDatabase;
 
 import androidx.appcompat.app.AppCompatActivity;
 
