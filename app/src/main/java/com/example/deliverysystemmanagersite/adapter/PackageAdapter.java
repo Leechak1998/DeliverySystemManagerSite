@@ -15,10 +15,10 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class packageAdapter extends ArrayAdapter<Packages>{
+public class PackageAdapter extends ArrayAdapter<Packages>{
     private int resourceId;
 
-    public packageAdapter(@NonNull Context context, int resource, List<Packages> objects) {
+    public PackageAdapter(@NonNull Context context, int resource, List<Packages> objects) {
         super(context, resource, objects);
         resourceId = resource;
     }

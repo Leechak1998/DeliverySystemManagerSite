@@ -10,7 +10,7 @@ public class DriverViewModel extends ViewModel {
 
     public DriverViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is dashboard fragment");
+        mText.setValue("This is driver fragment");
     }
 
     public LiveData<String> getText() {

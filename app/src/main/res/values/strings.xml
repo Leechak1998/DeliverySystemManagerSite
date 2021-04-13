@@ -12,4 +12,15 @@
     <string name="title_driver_detail">DriverDetail</string>
     <string name="title_vendor_detail">VendorDetail</string>
     <string name="title_site_detail">SiteDetail</string>
+
+    <string name="title_workList">WorkList</string>
+    <string name="title_add">Add</string>
+    <string name="title_Mine">Mine</string>
+
+    <string name="title_activity_tab">tabActivity</string>
+    <string name="tab_text_1">Package</string>
+    <string name="tab_text_2">Driver</string>
+    <string name="tab_text_3">Vendor</string>
+    <string name="tab_text_4"> Site </string>
+
 </resources>

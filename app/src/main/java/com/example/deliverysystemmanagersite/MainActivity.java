@@ -2,17 +2,22 @@ package com.example.deliverysystemmanagersite;
 
 import android.os.Bundle;
 
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import com.example.deliverysystemmanagersite.controller.fragment.LoginFragment;
 import com.example.deliverysystemmanagersite.controller.fragment.RegisterFragment;
 import com.example.deliverysystemmanagersite.db.myDatabase;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
     private LoginFragment LoginFra;
     private RegisterFragment RegisFra;
     public static myDatabase mdb;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
     }
+
 
 }
