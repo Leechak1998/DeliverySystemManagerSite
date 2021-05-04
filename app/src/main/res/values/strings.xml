@@ -23,4 +23,7 @@
     <string name="tab_text_3">Vendor</string>
     <string name="tab_text_4"> Site </string>
 
+    <drawable name="clr_normal">#6200EE</drawable>
+    <drawable name="clr_pressed">#8759CA</drawable>
+
 </resources>

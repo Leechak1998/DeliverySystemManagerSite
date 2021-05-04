@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_workList_driver">
+
+    <fragment android:id="@+id/navigation_workList_driver"
+        android:name="com.example.deliverysystemmanagersite.driver.driver.DriverWorkListFragment"
+        android:label="DriverWorkList"
+        tools:layout="@layout/fragment_driver_work_list">
+        <action
+            android:id="@+id/action_navigation_workList_driver_to_navigation_workList_details_driver"
+            app:destination="@id/navigation_workList_details_driver" />
+    </fragment>
+
+    <fragment android:id="@+id/navigation_workList_details_driver"
+        android:name="com.example.deliverysystemmanagersite.driver.driver.DriverWorkListDetailsFragment"
+        android:label="DriverWorkListDetails"
+        tools:layout="@layout/fragment_driver_work_list_details" />
+
+    <fragment android:id="@+id/navigation_map_driver"
+        android:name="com.example.deliverysystemmanagersite.driver.driver.DriverMapFragment"
+        android:label="Map"
+        tools:layout="@layout/fragment_driver_map"/>
+
+    <fragment android:id="@+id/navigation_mine_driver"
+        android:name="com.example.deliverysystemmanagersite.driver.driver.DriverMineFragment"
+        android:label="DriverMine"
+        tools:layout="@layout/fragment_driver_mine"/>
+</navigation>

@@ -9,6 +9,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.deliverysystemmanagersite.R;
 import com.example.deliverysystemmanagersite.adapter.PageAdapter;
@@ -17,8 +18,7 @@ import com.google.android.material.tabs.TabLayout;
 
 public class WorkListFragment extends Fragment {
     private View root;
-    private PageAdapter pageAdapter;
-    private ViewPager viewPager;
+    public ViewPager viewPager;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,7 +35,6 @@ public class WorkListFragment extends Fragment {
         tabs.setBackgroundColor(Color.WHITE);
         tabs.setTabTextColors(Color.BLACK,Color.GRAY);
         tabs.setupWithViewPager(viewPager);
-
 
         return root;
     }

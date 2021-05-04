@@ -23,21 +23,29 @@ public class PackageAdapter extends ArrayAdapter<Packages>{
         resourceId = resource;
     }
 
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
         Packages packages = getItem(position); //获取当前项的package实例
-
         View view = LayoutInflater.from(getContext()).inflate(resourceId,parent,false);
 
-        TextView OrderNum = (TextView) view.findViewById(R.id.tvId);
-        TextView Driver = (TextView) view.findViewById(R.id.tvDriver);
-        TextView Vendor = (TextView) view.findViewById(R.id.tvVendor);
-        TextView Destination = (TextView) view.findViewById(R.id.tvDestination);
+//        TextView OrderNum = (TextView) view.findViewById(R.id.Id);
+//        TextView Driver = (TextView) view.findViewById(R.id.tvDriver);
+//        TextView Vendor = (TextView) view.findViewById(R.id.tvDeparture);
+//        TextView Destination = (TextView) view.findViewById(R.id.tvDestination);
+//
+//        OrderNum.setText("Order: " + packages.getPackageId());
+//        Driver.setText(packages.getDriver());
+//        Vendor.setText(packages.getVendor());
+//        Destination.setText(packages.getDestination());
 
-        OrderNum.setText("Order: " + packages.getPackageId());
+        TextView OrderNum = (TextView) view.findViewById(R.id.Id);
+        TextView Driver = (TextView) view.findViewById(R.id.Driver_Name);
+        TextView Vendor = (TextView) view.findViewById(R.id.Departure);
+        TextView Destination = (TextView) view.findViewById(R.id.Destination);
+
+        OrderNum.setText(packages.getPackageId()+"");
         Driver.setText(packages.getDriver());
-        Vendor.setText(packages.getVendor());
+        Vendor.setText(packages.getDeparture());
         Destination.setText(packages.getDestination());
 
         return view;

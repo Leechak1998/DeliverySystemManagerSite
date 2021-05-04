@@ -9,23 +9,27 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.example.deliverysystemmanagersite.MainActivity;
 import com.example.deliverysystemmanagersite.R;
 import com.example.deliverysystemmanagersite.controller.activity.HomeActivity;
+import com.example.deliverysystemmanagersite.driver.driver.DriverPageFragment;
 import com.example.deliverysystemmanagersite.db.AppDatabase;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 public class LoginFragment extends Fragment {
-    public EditText etUsername;
-    public EditText etPassword;
-    public Button btnLogin;
-    public Button btnRegister;
-    public AppDatabase db;
-    private View view;
+    private EditText etUsername;
+    private EditText etPassword;
+    private Button btnLogin;
+    private Button btnRegister;
+    private RadioButton rBtnManager;
+    private RadioButton rBtnDriver;
+    private AppDatabase db;
+    private View root;
     private OnButtonClick onButtonClick;
 
     private static final int SUCCESS = 1;
@@ -45,22 +49,33 @@ public class LoginFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate( R.layout.fragment_login, null);
+        root = inflater.inflate( R.layout.fragment_login, null);
         init();
         btnListener();
-        return view;
+        return root;
     }
 
     public void init(){
-        etUsername = (EditText)view.findViewById(R.id.etUsername);
-        etPassword = (EditText)view.findViewById(R.id.etPassword);
-        btnLogin = (Button)view.findViewById(R.id.btnLogin);
-        btnRegister = (Button)view.findViewById(R.id.btnRegister);
+        etUsername = (EditText)root.findViewById(R.id.etUsername);
+        etPassword = (EditText)root.findViewById(R.id.etPassword);
+        btnLogin = (Button)root.findViewById(R.id.btnLogin);
+        btnRegister = (Button)root.findViewById(R.id.btnRegister);
+        rBtnDriver = (RadioButton)root.findViewById(R.id.rBtnDriver);
+        rBtnManager = (RadioButton)root.findViewById(R.id.rBtnManager);
 
         db = MainActivity.mdb.getDb();
     }
 
     public void btnListener(){
+
+        rBtnDriver.setOnClickListener(view -> {
+            rBtnManager.setChecked(false);
+        });
+
+        rBtnManager.setOnClickListener(view -> {
+            rBtnDriver.setChecked(false);
+        });
+
         btnRegister.setOnClickListener(view -> {
             if (onButtonClick != null) {
                 onButtonClick.onClicking(btnRegister);
@@ -68,23 +83,32 @@ public class LoginFragment extends Fragment {
         });
 
         btnLogin.setOnClickListener(view -> {
-            //Validate username and password
-            new Thread(() -> {
-                Message msg;
-                if ("Success".equals(checkUser(etUsername.getText().toString(), etPassword.getText().toString()))){
-                    msg = new Message();
-                    msg.what = SUCCESS;
-                    handler.sendMessage(msg);
-                    Intent intent = new Intent(getActivity(), HomeActivity.class);
-                    startActivity(intent);
-                } else {
-                    msg = new Message();
-                    msg.what = FAILURE;
-                    handler.sendMessage(msg);
-                }
+            if (rBtnManager.isChecked()){
+                new Thread(() -> {
+                    Message msg;
+                    if ("Success".equals(checkUser(etUsername.getText().toString(), etPassword.getText().toString()))){
+                        msg = new Message();
+                        msg.what = SUCCESS;
+                        handler.sendMessage(msg);
+                        Intent intent = new Intent(getActivity(), HomeActivity.class);
+                        startActivity(intent);
+                    } else {
+                        msg = new Message();
+                        msg.what = FAILURE;
+                        handler.sendMessage(msg);
+                    }
 
-            }).start();
+                }).start();
+            } else {
+                Intent intent = new Intent(getActivity(), DriverPageFragment.class);
+                startActivity(intent);
+            }
+            //Validate username and password
+
         });
+
+
+
     }
 
     public OnButtonClick getOnButtonClick() {

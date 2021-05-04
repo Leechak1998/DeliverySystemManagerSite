@@ -15,11 +15,48 @@
         android:id="@+id/navigation_add"
         android:name="com.example.deliverysystemmanagersite.controller.fragment.AddFragment"
         android:label="@string/title_add"
-        tools:layout="@layout/fragment_add" />
+        tools:layout="@layout/fragment_add" >
+<!--        <action-->
+<!--            android:id="@+id/action_navigation_add_to_navigation_packDetail"-->
+<!--            app:destination="@id/navigation_packDetail" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_navigation_add_to_navigation_DriverDetail"-->
+<!--            app:destination="@id/navigation_DriverDetail" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_navigation_add_to_navigation_VendorDetail2"-->
+<!--            app:destination="@id/navigation_VendorDetail" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_navigation_add_to_navigation_SiteDetail"-->
+<!--            app:destination="@id/navigation_SiteDetail" />-->
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_mine"
         android:name="com.example.deliverysystemmanagersite.controller.fragment.MineFragment"
         android:label="@string/title_Mine"
         tools:layout="@layout/fragment_mine" />
+
+    <fragment
+        android:id="@+id/navigation_packDetail"
+        android:name="com.example.deliverysystemmanagersite.controller.fragment.PackageDetailsFragment"
+        android:label="PackageDetails"
+        tools:layout="@layout/fragment_package_details" />
+
+    <fragment
+        android:id="@+id/navigation_DriverDetail"
+        android:name="com.example.deliverysystemmanagersite.controller.fragment.DriverDetailsFragment"
+        android:label="DriverDetails"
+        tools:layout="@layout/fragment_driver_details"/>
+
+    <fragment
+        android:id="@+id/navigation_VendorDetail"
+        android:name="com.example.deliverysystemmanagersite.controller.fragment.VendorDetailFragment"
+        android:label="VendorDetails"
+        tools:layout="@layout/fragment_vendor_detail"/>
+
+    <fragment
+        android:id="@+id/navigation_SiteDetail"
+        android:name="com.example.deliverysystemmanagersite.controller.fragment.SiteDetailFragment"
+        android:label="SiteDetails"
+        tools:layout="@layout/fragment_site_detail"/>
 </navigation>

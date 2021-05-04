@@ -63,7 +63,7 @@ public class RegisterFragment extends Fragment {
         etEmail = (EditText)view.findViewById(R.id.etEmail);
         etPhone = (EditText)view.findViewById(R.id.etPhone);
         btnSub = (Button)view.findViewById(R.id.btnSub);
-        btnCan = (Button)view.findViewById(R.id.btnCancel);
+        btnCan = (Button)view.findViewById(R.id.btnCan);
         hideTv1 = (TextView)view.findViewById(R.id.hideTv1);
 
         db = MainActivity.mdb.getDb();

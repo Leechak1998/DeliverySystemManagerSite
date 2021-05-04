@@ -14,8 +14,10 @@
         android:theme="@style/Theme.DeliverySystemManagerSite">
         <activity
             android:name=".controller.activity.HomeActivity"
-            android:label="@string/title_activity_home"></activity>
-        <activity android:name=".MainActivity">
+            android:label="@string/title_activity_home"
+            android:windowSoftInputMode="adjustPan"></activity>
+        <activity android:name=".MainActivity"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,6 +25,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".controller.DataActivity" />
+        <activity android:name=".driver.driver.DriverPageFragment"/>
     </application>
 
 </manifest>

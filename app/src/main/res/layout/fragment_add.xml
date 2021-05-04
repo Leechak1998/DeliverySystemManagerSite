@@ -1,14 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".controller.fragment.AddFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:id="@+id/ly"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-</FrameLayout>
+        <Button
+            android:id="@+id/btnPackage"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            app:backgroundTint="@color/lightWhite"
+            android:textSize="10dp"
+            android:text="package"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/btnDriver"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            app:backgroundTint="@color/lightWhite"
+            android:textSize="10dp"
+            android:text="Driver"
+            android:textColor="@color/black"/>
+
+        <Button
+            android:id="@+id/btnVendor"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            app:backgroundTint="@color/lightWhite"
+            android:textSize="10dp"
+            android:text="Vendor"
+            android:textColor="@color/black"/>
+
+        <Button
+            android:id="@+id/vtnSite"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            app:backgroundTint="@color/lightWhite"
+            android:textSize="10dp"
+            android:text="Site"
+            android:textColor="@color/black"/>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/dif_add_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ly" />
+
+
+</RelativeLayout>

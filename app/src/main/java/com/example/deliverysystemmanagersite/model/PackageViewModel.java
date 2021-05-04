@@ -1,10 +1,8 @@
 package com.example.deliverysystemmanagersite.model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 public class PackageViewModel extends ViewModel {
@@ -26,20 +24,27 @@ public class PackageViewModel extends ViewModel {
     }
 
     public void initPack(){
-        Packages pack1 = new Packages(1,"Jackson1","APPLE","Southampton");
+//        Packages pack1 = new Packages(1,"Jackson1","APPLE","Southampton");
+//        packagesList.add(pack1);
+//        Packages pack2 = new Packages(2,"Sam2","SONY","Sheffield");
+//        packagesList.add(pack2);
+//        Packages pack3 = new Packages(3,"Lily3","SAMSUNG","Southampton Crossings");
+//        packagesList.add(pack3);
+//        Packages pack4 = new Packages(4,"Jack4","APPLE","Hampton");
+//        packagesList.add(pack4);
+//        Packages pack5 = new Packages(5,"Jacob5","APPLE","Vita");
+//        packagesList.add(pack5);
+//        Packages pack6 = new Packages(6,"Yuki6","APPLE","Cumberland");
+//        packagesList.add(pack6);
+//        Packages pack7 = new Packages(7,"Bally7","APPLE","Vincent");
+//        packagesList.add(pack7);
+
+        Packages pack1 = new Packages(1,"Southampton","Jackson1","123123123","APPLE","Southampton",new Date(),"delivered");
         packagesList.add(pack1);
-        Packages pack2 = new Packages(2,"Sam2","SONY","Sheffield");
+        Packages pack2 = new Packages(2,"London","Sam2","123123132","SONY","Sheffield", new Date(),"pending");
         packagesList.add(pack2);
-        Packages pack3 = new Packages(3,"Lily3","SAMSUNG","Southampton Crossings");
+        Packages pack3 = new Packages(3,"London","Lily3","123123","SAMSUNG","Southampton Crossings",new Date(),"delivering");
         packagesList.add(pack3);
-        Packages pack4 = new Packages(4,"Jack4","APPLE","Hampton");
-        packagesList.add(pack4);
-        Packages pack5 = new Packages(5,"Jacob5","APPLE","Vita");
-        packagesList.add(pack5);
-        Packages pack6 = new Packages(6,"Yuki6","APPLE","Cumberland");
-        packagesList.add(pack6);
-        Packages pack7 = new Packages(7,"Bally7","APPLE","Vincent");
-        packagesList.add(pack7);
     }
 
     public List<Packages> sortList(int requirement){

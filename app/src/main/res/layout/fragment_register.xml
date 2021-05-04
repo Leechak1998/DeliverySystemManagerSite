@@ -123,7 +123,7 @@
                 app:backgroundTint="@color/teal_200" />
 
             <Button
-                android:id="@+id/btnCancel"
+                android:id="@+id/btnCan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:insetLeft="50dp"

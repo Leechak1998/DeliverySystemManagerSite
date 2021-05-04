@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_workList_driver"
+        android:icon="@drawable/ic_worklist_black"
+        android:title="@string/title_workList" />
+
+    <item
+        android:id="@+id/navigation_map_driver"
+        android:icon="@drawable/ic_mine_black"
+        android:title="Map" />
+
+    <item
+        android:id="@+id/navigation_mine_driver"
+        android:icon="@drawable/ic_mine_black"
+        android:title="@string/title_Mine" />
+
+</menu>
