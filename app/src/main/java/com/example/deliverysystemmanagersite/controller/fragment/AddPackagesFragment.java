@@ -121,10 +121,21 @@ public class AddPackagesFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 System.out.println("From: " + selFrom + " To: " + selTo + " By: " + selDriver);
+                /*
+                HttpConnectionUtil htc = new HttpConnectionUtil();
+                String test = htc.doGet("http://10.0.2.2:8339/addDriverGet?username="+et_username.getText().toString()+"&email="+et_email.getText().toString()+"&phone="+et_phone.getText().toString());
+                try {
+                    JSONObject jsonObject = new JSONObject(test);
+                    String um = jsonObject.getString("username");
+                    System.out.println("username:" + um);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("------" + test);
+
+                */
             }
         });
-
-
     }
 
     public ArrayAdapter<String> setListAdapter(List<String> list){

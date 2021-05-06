@@ -27,7 +27,8 @@ public class AddFragment extends Fragment {
     private Button btnSite;
     private AddPackagesFragment addPackagesFragment;
     private AddDriverFragment addDriverFragment;
-
+    private AddVendorFragment addVendorFragment;
+    private AddSiteFragment addSiteFragment;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,8 +45,6 @@ public class AddFragment extends Fragment {
         return root;
     }
 
-
-
     private void init(){
         btnPackages = (Button) root.findViewById(R.id.btnPackage);
         btnDriver = (Button) root.findViewById(R.id.btnDriver);
@@ -54,6 +53,8 @@ public class AddFragment extends Fragment {
 
         addPackagesFragment = new AddPackagesFragment();
         addDriverFragment = new AddDriverFragment();
+        addVendorFragment = new AddVendorFragment();
+        addSiteFragment = new AddSiteFragment();
 
         getActivity().getSupportFragmentManager().beginTransaction().add(R.id.dif_add_fragment, addPackagesFragment).commitAllowingStateLoss();
     }
@@ -69,21 +70,13 @@ public class AddFragment extends Fragment {
                 .replace(R.id.dif_add_fragment,addDriverFragment)
                 .commit());
 
-        TouchListener(btnPackages);
-        TouchListener(btnDriver);
+        btnVendor.setOnClickListener(view -> getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.dif_add_fragment,addVendorFragment)
+                .commit());
 
+        btnSite.setOnClickListener(view -> getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.dif_add_fragment,addSiteFragment)
+                .commit());
     }
-
-    public void TouchListener(View v){
-        v.setOnTouchListener((view, motionEvent) -> {
-            if (motionEvent.getAction() == MotionEvent.ACTION_DOWN){
-                view.setBackgroundColor(Color.parseColor("#FAEBD7"));
-            }else if (motionEvent.getAction() == MotionEvent.ACTION_UP){
-                view.setBackgroundColor(Color.parseColor("#FFFFF0"));
-            }
-            return false;
-        });
-    }
-
 
 }
