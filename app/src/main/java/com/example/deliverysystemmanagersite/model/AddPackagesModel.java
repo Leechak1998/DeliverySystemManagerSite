@@ -38,17 +38,6 @@ public class AddPackagesModel {
         list_site.add(s2);
         list_driver.add(d2);
 
-//        listFrom.add("China");
-//        listFrom.add("Britain");
-//        listFrom.add("France");
-//
-//        listTo.add("Crossings");
-//        listTo.add("Crecent");
-//        listTo.add("Cumberland");
-//
-//        listDriver.add("Jackson");
-//        listDriver.add("Sam");
-//        listDriver.add("Tim");
     }
 
     public List<?> init_list(int index){

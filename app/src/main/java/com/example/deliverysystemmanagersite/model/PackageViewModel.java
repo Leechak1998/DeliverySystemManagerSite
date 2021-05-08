@@ -3,15 +3,27 @@ package com.example.deliverysystemmanagersite.model;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+
 import androidx.lifecycle.ViewModel;
+
+import com.example.deliverysystemmanagersite.util.HttpConnectionUtil;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class PackageViewModel extends ViewModel {
 
-    //"Order Num: Increasing", "Order Num: Decreasing","Time: New-Past", "Time: Past-New"
+
+
     private static int SOT_BY_NUMBER_INC = 0;
     private static int SOT_BY_NUMBER_DEC = 1;
     private static int SORT_BY_TIME_DEC = 2;
-    private static int SOT_BY_TIME_INC = 3;
+    private static int SORT_BY_TIME_INC = 3;
+    private static int SORT_BY_STATE_DEC = 4;
+    private static int SORT_BY_STATE_INC = 5;
+
 
     private List<Packages> packagesList = new ArrayList<>();
 
@@ -24,27 +36,25 @@ public class PackageViewModel extends ViewModel {
     }
 
     public void initPack(){
-//        Packages pack1 = new Packages(1,"Jackson1","APPLE","Southampton");
-//        packagesList.add(pack1);
-//        Packages pack2 = new Packages(2,"Sam2","SONY","Sheffield");
-//        packagesList.add(pack2);
-//        Packages pack3 = new Packages(3,"Lily3","SAMSUNG","Southampton Crossings");
-//        packagesList.add(pack3);
-//        Packages pack4 = new Packages(4,"Jack4","APPLE","Hampton");
-//        packagesList.add(pack4);
-//        Packages pack5 = new Packages(5,"Jacob5","APPLE","Vita");
-//        packagesList.add(pack5);
-//        Packages pack6 = new Packages(6,"Yuki6","APPLE","Cumberland");
-//        packagesList.add(pack6);
-//        Packages pack7 = new Packages(7,"Bally7","APPLE","Vincent");
-//        packagesList.add(pack7);
-
-        Packages pack1 = new Packages(1,"Southampton","Jackson1","123123123","APPLE","Southampton",new Date(),"delivered");
-        packagesList.add(pack1);
-        Packages pack2 = new Packages(2,"London","Sam2","123123132","SONY","Sheffield", new Date(),"pending");
-        packagesList.add(pack2);
-        Packages pack3 = new Packages(3,"London","Lily3","123123","SAMSUNG","Southampton Crossings",new Date(),"delivering");
-        packagesList.add(pack3);
+        HttpConnectionUtil htc = new HttpConnectionUtil();
+        String dataList = htc.doGet("http://10.0.2.2:8339/getPackage");
+            try{
+                JSONObject JSON_obj = new JSONObject(dataList);
+                JSONArray PackageList = JSON_obj.getJSONArray("drivers");
+                for (int i=0; i<PackageList.length(); i++){
+                    int packageId = PackageList.getJSONObject(i).getInt("packageId");
+                    String driver = PackageList.getJSONObject(i).getString("driver");
+                    String vendor = PackageList.getJSONObject(i).getString("vendor");
+                    String tel = PackageList.getJSONObject(i).getString("tel");
+                    String departure = PackageList.getJSONObject(i).getString("departure");
+                    String destination = PackageList.getJSONObject(i).getString("destination");
+                    String date = PackageList.getJSONObject(i).getString("date");
+                    String state = PackageList.getJSONObject(i).getString("state");
+                    packagesList.add(new Packages(packageId,departure,driver,tel,vendor,destination,date,state));
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
     }
 
     public List<Packages> sortList(int requirement){
@@ -72,9 +82,13 @@ public class PackageViewModel extends ViewModel {
                 }
             }
         } else if (requirement == SORT_BY_TIME_DEC){
-            System.out.println("SORT_BY_TIME_DEC");
-        } else if (requirement == SOT_BY_TIME_INC){
-            System.out.println("SOT_BY_TIME_INC");
+
+        } else if (requirement == SORT_BY_TIME_INC){
+
+        } else if(requirement == SORT_BY_STATE_DEC){
+
+        }else if(requirement == SORT_BY_STATE_INC){
+
         }
 
         return packagesList;
