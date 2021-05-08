@@ -42,6 +42,7 @@ public class DriverDetailsFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             driverViewModel = new ViewModelProvider(this).get(DriverViewModel.class);
+            driverViewModel.init();
             driver_List = driverViewModel.getText();
             driver_selected = driver_List.get(getArguments().getInt("index"));
         }

@@ -50,14 +50,14 @@ public class PackageDetailsFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
+            System.out.println("----" + getArguments().getInt("index"));
             packageViewModel = new ViewModelProvider(this).get(PackageViewModel.class);
             package_List = packageViewModel.getText();
+//            System.out.println("----" + package_List.size());
             package_selected = package_List.get(getArguments().getInt("index"));
         }
 
     }
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

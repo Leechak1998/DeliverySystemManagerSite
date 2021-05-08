@@ -35,15 +35,14 @@ public class VendorViewModel extends ViewModel {
             @Override
             public void run() {
                 HttpConnectionUtil htc = new HttpConnectionUtil();
-                String dataList = htc.doGet("http://10.0.2.2:8339/getVendor");
+                String dataList = htc.doGet("http://10.0.2.2:8339/selectVendorAll");
                 try{
-                    JSONObject JSON_obj = new JSONObject(dataList);
-                    JSONArray vendorList = JSON_obj.getJSONArray("vendor");
+                    JSONArray vendorList = new JSONArray(dataList);
                     for (int i=0; i<vendorList.length(); i++){
                         int vendorId = vendorList.getJSONObject(i).getInt("vendorId");
                         String vendorName = vendorList.getJSONObject(i).getString("vendorName");
                         String email = vendorList.getJSONObject(i).getString("email");
-                        String tel = vendorList.getJSONObject(i).getString("tel");
+                        String tel = vendorList.getJSONObject(i).getString("telephoneNumber");
                         String address = vendorList.getJSONObject(i).getString("address");
                         VendorList.add(new Vendor(vendorName,tel,vendorId,email,address));
                     }

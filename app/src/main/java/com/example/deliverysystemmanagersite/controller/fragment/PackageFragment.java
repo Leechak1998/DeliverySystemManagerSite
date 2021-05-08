@@ -26,9 +26,6 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
-import static android.content.ContentValues.TAG;
-
-
 public class PackageFragment extends Fragment {
 
     private PackageFragment fra;
@@ -51,7 +48,7 @@ public class PackageFragment extends Fragment {
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        packageViewModel = new ViewModelProvider(this).get(PackageViewModel.class);
+        packageViewModel = new ViewModelProvider(requireActivity()).get(PackageViewModel.class);
         root = inflater.inflate(R.layout.fragment_package, container, false);
         init();
         setListener();
