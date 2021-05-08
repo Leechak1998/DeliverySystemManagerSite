@@ -15,6 +15,8 @@ import android.widget.TextView;
 import com.example.deliverysystemmanagersite.R;
 import com.example.deliverysystemmanagersite.model.Driver;
 import com.example.deliverysystemmanagersite.model.DriverViewModel;
+import com.example.deliverysystemmanagersite.model.Site;
+import com.example.deliverysystemmanagersite.util.HttpConnectionUtil;
 
 import java.util.List;
 
@@ -59,7 +61,7 @@ public class DriverDetailsFragment extends Fragment {
         driver_id = (TextView) root.findViewById(R.id.driver_id);
         email = (TextView) root.findViewById(R.id.driver_email);
 
-        Edit = (ImageButton) root.findViewById(R.id.Site_edit);
+        Edit = (ImageButton) root.findViewById(R.id.Driver_edit);
 
         driver_name.setText(driver_selected.getDriver_name());
         tel.setText(driver_selected.getTel());
@@ -67,13 +69,18 @@ public class DriverDetailsFragment extends Fragment {
         email.setText(driver_selected.getEmail());
     }
     public void setListener(){
-        Edit.setOnClickListener(view->{
-            String t = tel.getText().toString();
-            if(TextUtils.isEmpty(t)){
-                System.out.println("err");
-            }else {
-                System.out.println("t");
-            }
-        });
+            Edit.setOnClickListener(view->{
+                HttpConnectionUtil htc = new HttpConnectionUtil();
+                String Tel = tel.getText().toString();
+                String Driver_name = driver_name.getText().toString();
+                String Email = email.getText().toString();
+                String Driver_id = driver_id.getText().toString();
+                Driver d = new Driver(Driver_name,Tel,Integer.parseInt(Driver_id),Email);
+                htc.doGet("http://10.0.2.2:8339/updateSite?driverName=" + d.getDriver_name() +"&tel="+d.getTel()+ "&driverId=" + d.getDriver_id() + "&email="+d.getEmail());
+                tel.setText(Tel);
+                driver_name.setText(Driver_name);
+                email.setText(Email);
+            });
+
     }
 }

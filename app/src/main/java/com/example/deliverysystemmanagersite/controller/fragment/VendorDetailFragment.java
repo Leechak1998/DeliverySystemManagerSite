@@ -16,21 +16,17 @@ import android.widget.TextView;
 import com.example.deliverysystemmanagersite.R;
 import com.example.deliverysystemmanagersite.model.Vendor;
 import com.example.deliverysystemmanagersite.model.VendorViewModel;
+import com.example.deliverysystemmanagersite.util.HttpConnectionUtil;
 
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link VendorDetailFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class VendorDetailFragment extends Fragment {
 
     private TextView vendor_name;
     private TextView tel;
     private TextView vendor_id;
     private TextView email;
-    private TextView vendor_address;
+    private TextView address;
     private VendorViewModel vendorViewModel;
     private List<Vendor> vendor_List;
     private Vendor vendor_selected;
@@ -60,7 +56,7 @@ public class VendorDetailFragment extends Fragment {
         tel = (TextView) root.findViewById(R.id.Vendor_Tel);
         vendor_id = (TextView) root.findViewById(R.id.Vendor_Id);
         email = (TextView) root.findViewById(R.id.Vendor_Email);
-        vendor_address = (TextView) root.findViewById(R.id.Vendor_Address);
+        address = (TextView) root.findViewById(R.id.Vendor_Address);
 
         Edit = (ImageButton) root.findViewById(R.id.Vendor_edit);
 
@@ -68,16 +64,22 @@ public class VendorDetailFragment extends Fragment {
         tel.setText(vendor_selected.getTel());
         vendor_id.setText(vendor_selected.getVendor_id()+"");
         email.setText(vendor_selected.getEmail());
-        vendor_address.setText(vendor_selected.getAddress());
+        address.setText(vendor_selected.getAddress());
     }
     public void setListener(){
         Edit.setOnClickListener(view->{
-            String t = tel.getText().toString();
-            if(TextUtils.isEmpty(t)){
-                System.out.println("err");
-            }else {
-                System.out.println("t");
-            }
+            HttpConnectionUtil htc = new HttpConnectionUtil();
+            String Tel = tel.getText().toString();
+            String Vendor_name = vendor_name.getText().toString();
+            String Email = email.getText().toString();
+            String Vendor_id = vendor_id.getText().toString();
+            String Address = address.getText().toString();
+            Vendor v = new Vendor(Vendor_name,Tel,Integer.parseInt(Vendor_id),Email,Address);
+            htc.doGet("http://10.0.2.2:8339/updateVendor?vanderName=" + v.getVendor_name() +"&tel="+v.getTel()+ "&vendorId=" + v.getVendor_id() + "&email="+v.getEmail()+"&address="+v.getAddress());
+            tel.setText(Tel);
+            vendor_name.setText(Vendor_name);
+            email.setText(Email);
+            address.setText(Address);
         });
     }
 }

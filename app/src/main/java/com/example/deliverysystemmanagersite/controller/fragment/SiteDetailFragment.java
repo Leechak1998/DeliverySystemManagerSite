@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.example.deliverysystemmanagersite.R;
 import com.example.deliverysystemmanagersite.model.Site;
 import com.example.deliverysystemmanagersite.model.SiteViewModel;
+import com.example.deliverysystemmanagersite.util.HttpConnectionUtil;
 
 import java.util.List;
 
@@ -87,12 +88,18 @@ public class SiteDetailFragment extends Fragment {
     }
     public void setListener(){
         Edit.setOnClickListener(view->{
-            String t = tel.getText().toString();
-            if(TextUtils.isEmpty(t)){
-                System.out.println("err");
-            }else {
-                System.out.println(t);
-            }
+            HttpConnectionUtil htc = new HttpConnectionUtil();
+            String Tel = tel.getText().toString();
+            String Site_name = site_name.getText().toString();
+            String Email = email.getText().toString();
+            String Site_id = site_id.getText().toString();
+            String Address = site_address.getText().toString();
+            Site s = new Site(Site_name,Tel,Integer.parseInt(Site_id),Email,Address);
+            htc.doGet("http://10.0.2.2:8339/updateSite?siteName=" + s.getSite_name() +"&tel="+s.getTel()+ "&siteId=" + s.getSite_id() + "&email="+s.getEmail()+"&address="+s.getAddress());
+            tel.setText(Tel);
+            site_name.setText(Site_name);
+            email.setText(Email);
+            site_address.setText(Address);
         });
     }
 }
