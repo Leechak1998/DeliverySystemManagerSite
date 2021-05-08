@@ -2,6 +2,7 @@ package com.example.deliverysystemmanagersite.model;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 
 public class Packages {
     private int packageId;
@@ -24,11 +25,12 @@ public class Packages {
         this.date = date;
     }
 
-    public Packages(int packageId, String driver, String vendor, String destination){
+    public Packages(int packageId, String driver, String vendor, String destination,String state){
         this.packageId =  packageId;
         this.driver = driver;
         this.vendor = vendor;
         this.departure = vendor;
+        this.state = state;
         this.destination = destination;
     }
 
@@ -59,6 +61,14 @@ public class Packages {
 
     public String getState() {
         return state;
+    }
+    public String getStringState(String state){
+        HashMap<String,String> map = new HashMap<String,String>(){{
+            put("0","pending");
+            put("1","delivering");
+            put("2","delivered");
+        }};
+        return  map.get(state);
     }
 
 //    public Date getDelivery_date(){

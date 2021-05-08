@@ -41,7 +41,7 @@ public class PackageFragment extends Fragment {
     private ImageButton btnFilter;
     private EditText etSearchBar;
     private PackageAdapter adapter;
-    private final String[] items = new String[]{"Order Num: Increasing", "Order Num: Decreasing","Time: New-Past", "Time: Past-New"};
+    private final String[] items = new String[]{"Order Num: Increasing", "Order Num: Decreasing","State"};
 
     public static PackageFragment newInstance() {
         PackageFragment fragment = new PackageFragment();

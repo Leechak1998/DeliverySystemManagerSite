@@ -89,7 +89,8 @@ public class AddPackagesModel {
         String vendorName = vendor.getVendor_name();
         String departure = vendor.getAddress();
         String destination = site.getAddress();
-        System.out.println("driverID=" + driverID + "  vendorName=" + vendorName + "  departure=" + departure + "  destination=" + destination);
+
+//        System.out.println("driverID=" + driverID + "  vendorName=" + vendorName + "  departure=" + departure + "  destination=" + destination);
 
         HttpConnectionUtil htc = new HttpConnectionUtil();
         System.out.println(htc.doGet("http://10.0.2.2:8339/createPackage?driverId=" + driverID + "&vendorName=" + vendorName + "&departure=" + departure + "&destination=" + destination));

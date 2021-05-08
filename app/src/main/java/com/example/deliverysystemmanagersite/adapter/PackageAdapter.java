@@ -33,12 +33,12 @@ public class PackageAdapter extends ArrayAdapter<Packages>{
         View view = LayoutInflater.from(getContext()).inflate(resourceId,parent,false);
 
         TextView OrderNum = (TextView) view.findViewById(R.id.Id);
-        TextView Driver = (TextView) view.findViewById(R.id.Driver_Name);
+        TextView Status = (TextView) view.findViewById(R.id.Package_Status);
         TextView Vendor = (TextView) view.findViewById(R.id.Departure);
         TextView Destination = (TextView) view.findViewById(R.id.Destination);
 
         OrderNum.setText(packages.getPackageId()+"");
-        Driver.setText(packages.getDriver());
+        Status.setText(packages.getStringState(packages.getState()));
         Vendor.setText(packages.getDeparture());
         Destination.setText(packages.getDestination());
 

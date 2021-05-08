@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 
-import com.example.deliverysystemmanagersite.model.Driver;
 import com.example.deliverysystemmanagersite.model.Packages;
 import com.example.deliverysystemmanagersite.util.HttpConnectionUtil;
 import com.example.deliverysystemmanagersite.util.SerializableList;

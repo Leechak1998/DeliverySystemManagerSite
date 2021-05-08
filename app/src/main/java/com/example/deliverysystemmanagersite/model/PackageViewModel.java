@@ -31,9 +31,7 @@ public class PackageViewModel extends ViewModel{
 
     private static int SOT_BY_NUMBER_INC = 0;
     private static int SOT_BY_NUMBER_DEC = 1;
-    private static int SORT_BY_TIME_DEC = 2;
-    private static int SORT_BY_TIME_INC = 3;
-    private static int SORT_BY_STATE = 4;
+    private static int SORT_BY_STATE = 2;
 
     private List<Packages> packagesList = new ArrayList<>();
     private final MutableLiveData<String> selected = new MutableLiveData<String>();
@@ -84,9 +82,7 @@ public class PackageViewModel extends ViewModel{
 
 
     public void initPack(){
-        System.out.println("11111111");
         new Thread(() -> {
-            System.out.println("22222222");
             HttpConnectionUtil htc = new HttpConnectionUtil();
             //127.0.0.1:8339/selectPackageAll
             String dataList = htc.doGet("http://10.0.2.2:8339/selectPackageAll");
@@ -149,52 +145,24 @@ public class PackageViewModel extends ViewModel{
                     }
                 }
             }
-        } else if (requirement == SORT_BY_TIME_DEC){
-            System.out.println("SORT_BY_TIME_DEC");
-            for(int i=0; i<packagesList.size(); i++){
-                for(int j=0; j<packagesList.size()-1-i; j++){
-                    if(this.IntDate(packagesList.get(j).getDate()) < this.IntDate(packagesList.get(j+1).getDate())){
-                        temp = packagesList.get(j);
-                        packagesList.set(j, packagesList.get(j+1));
-                        packagesList.set(j+1, temp);
-                    }
-                }
-            }
-        } else if (requirement == SORT_BY_TIME_INC){
-            System.out.println("SORT_BY_TIME_INC");
-            for(int i=0; i<packagesList.size(); i++){
-                for(int j=0; j<packagesList.size()-1-i; j++){
-                    if(this.IntDate(packagesList.get(j).getDate()) > this.IntDate(packagesList.get(j+1).getDate())){
-                        temp = packagesList.get(j);
-                        packagesList.set(j, packagesList.get(j+1));
-                        packagesList.set(j+1, temp);
-                    }
-                }
-            }
         }else if(requirement == SORT_BY_STATE){
             System.out.println("SORT_BY_STATE");
-            HashMap<String,Integer> map = new HashMap<String,Integer>(){{
-                put("pending",1);
-                put("delivering",2);
-                put("delivered",3);
-            }};
             for(int i=0; i<packagesList.size(); i++){
                 for(int j=0; j<packagesList.size()-1-i; j++){
-                    if(map.get(packagesList.get(j).getState()) < map.get(packagesList.get(j+1).getPackageId())){
+                    if(Integer.parseInt(packagesList.get(j).getState()) < Integer.parseInt(packagesList.get(j+1).getState())){
                         temp = packagesList.get(j);
                         packagesList.set(j, packagesList.get(j+1));
                         packagesList.set(j+1, temp);
                     }
-
         } }}
         return packagesList;
 
     }
     private int IntDate(String date){
-//        int month = Integer.parseInt(date.substring(0,1));
-//        int day = Integer.parseInt(date.substring(3,4));
-//        int year = Integer.parseInt(date.substring(3,4));
-        return Integer.parseInt(date.substring(0,3))*10000+Integer.parseInt(date.substring(5,6))*100+Integer.parseInt(date.substring(8,9));
+        int month = Integer.parseInt(date.substring(0,1));
+        int day = Integer.parseInt(date.substring(3,4));
+        int year = Integer.parseInt(date.substring(3,4));
+        return year*10000+month*100+day;
     }
     public List<Packages> findItem(String input){
         List<Packages> pl = new ArrayList<>();

@@ -29,6 +29,7 @@ import com.example.deliverysystemmanagersite.model.Packages;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -69,7 +70,7 @@ public class PackageDetailsFragment extends Fragment {
             packageId.setText(packageViewModel.getSelectedPackage().getValue().getPackageId()+"");
             vendor.setText(packageViewModel.getSelectedPackage().getValue().getVendor());
             delivery_date.setText(packageViewModel.getSelectedPackage().getValue().getDate());
-            state.setText(packageViewModel.getSelectedPackage().getValue().getState());
+            state.setText(packageViewModel.getSelectedPackage().getValue().getStringState(packageViewModel.getSelectedPackage().getValue().getState()));
 
         });
 
