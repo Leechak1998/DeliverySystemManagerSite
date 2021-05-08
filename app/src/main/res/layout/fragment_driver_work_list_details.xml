@@ -1,16 +1,193 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="20dp"
     tools:context=".driver.driver.DriverWorkListDetailsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/tv"
+    <LinearLayout
+        android:id="@+id/ly1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textSize="30dp"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-</FrameLayout>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="From:"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/et_departure"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:textColor="@color/black"/>
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/et_departure"
+            android:src="@drawable/ic_arrow_black" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/imageView"
+            android:text="To:"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/et_destination"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:textColor="@color/black"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ly2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/ly1"
+        android:paddingTop="20dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Name:"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/et_name"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:textColor="@color/black"/>
+
+        <Space
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"></Space>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:text="Tel:"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/et_phone"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:enabled="false"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_1"
+        android:layout_width="wrap_content"
+        android:layout_height="55dp"
+        android:layout_below="@id/ly2"
+        android:text="Order number:"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:paddingTop="20dp"/>
+
+    <EditText
+        android:id="@+id/et_id"
+        android:layout_width="match_parent"
+        android:layout_below="@id/ly2"
+        android:layout_toRightOf="@id/tv_1"
+        android:layout_height="55dp"
+        android:enabled="false"
+        android:paddingTop="20dp"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/tv_2"
+        android:layout_width="wrap_content"
+        android:layout_height="55dp"
+        android:layout_below="@id/tv_1"
+        android:text="Vendor:"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:paddingTop="20dp"/>
+
+    <EditText
+        android:id="@+id/et_vendor"
+        android:layout_width="match_parent"
+        android:layout_below="@id/et_id"
+        android:layout_toRightOf="@id/tv_2"
+        android:layout_height="55dp"
+        android:enabled="false"
+        android:paddingTop="20dp"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/tv_3"
+        android:layout_width="wrap_content"
+        android:layout_height="55dp"
+        android:layout_below="@id/tv_2"
+        android:text="Delivered date:"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:paddingTop="20dp"/>
+
+    <EditText
+        android:id="@+id/et_date"
+        android:layout_width="match_parent"
+        android:layout_below="@id/et_vendor"
+        android:layout_toRightOf="@id/tv_3"
+        android:layout_height="55dp"
+        android:enabled="false"
+        android:paddingTop="20dp"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/tv_4"
+        android:layout_width="wrap_content"
+        android:layout_height="55dp"
+        android:layout_below="@id/tv_3"
+        android:text="Status:"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:paddingTop="20dp"/>
+
+    <EditText
+        android:id="@+id/et_status"
+        android:layout_width="match_parent"
+        android:layout_below="@id/et_date"
+        android:layout_toRightOf="@id/tv_4"
+        android:layout_height="55dp"
+        android:enabled="false"
+        android:paddingTop="20dp"
+        android:textColor="@color/black"/>
+
+
+</RelativeLayout>

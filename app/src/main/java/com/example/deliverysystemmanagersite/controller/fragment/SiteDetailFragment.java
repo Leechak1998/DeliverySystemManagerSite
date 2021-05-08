@@ -76,7 +76,6 @@ public class SiteDetailFragment extends Fragment {
         email = (TextView) root.findViewById(R.id.Site_Email);
         site_address = (TextView) root.findViewById(R.id.Site_Address);
 
-
         Edit = (ImageButton) root.findViewById(R.id.Site_edit);
 
         site_name.setText(site_selected.getSite_name());
@@ -86,6 +85,7 @@ public class SiteDetailFragment extends Fragment {
         site_address.setText(site_selected.getAddress());
 
     }
+
     public void setListener(){
         Edit.setOnClickListener(view->{
             HttpConnectionUtil htc = new HttpConnectionUtil();

@@ -67,7 +67,8 @@ public class DriverWorkListFragment extends Fragment {
 
         listView.setOnItemClickListener((adapterView, view, i, l) -> {
             //viewModel.select(list.get(i));
-            viewModel.select(pList.get(i).getPackageId()+"");
+            //viewModel.select(pList.get(i).getPackageId()+"");
+            viewModel.selectPackage(pList.get(i));
 
             Navigation.findNavController(root);
             NavHostFragment.findNavController(fra).navigate(R.id.navigation_workList_details_driver);

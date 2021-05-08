@@ -17,14 +17,11 @@ import org.json.JSONObject;
 
 public class PackageViewModel extends ViewModel {
 
-
-
     private static int SOT_BY_NUMBER_INC = 0;
     private static int SOT_BY_NUMBER_DEC = 1;
     private static int SORT_BY_TIME_DEC = 2;
     private static int SORT_BY_TIME_INC = 3;
     private static int SORT_BY_STATE = 4;
-
 
     private List<Packages> packagesList = new ArrayList<>();
 
