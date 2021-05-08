@@ -21,6 +21,8 @@ public class AddPackagesModel {
     final private static int ADD_DRIVER = 2;
 
     public AddPackagesModel(){
+        //requestData
+
         Vendor v1 = new Vendor("Vendor1", "123", 0, "123@qq", "Hampton");
         Site s1 = new Site("Site1", "321", 0, "321@qq", "Crossings", "jack");
         Driver d1 = new Driver("jackson", "12333", 0 , "jack@qq");
@@ -36,7 +38,6 @@ public class AddPackagesModel {
         list_site.add(s2);
         list_driver.add(d2);
 
-        //requestData();
 //        listFrom.add("China");
 //        listFrom.add("Britain");
 //        listFrom.add("France");
