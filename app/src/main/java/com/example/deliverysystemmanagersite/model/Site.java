@@ -8,13 +8,12 @@ public class Site {
     private String address;
     private String admin;
 
-    public Site(String Site_Name,String Tel,int Site_Id, String Email, String Address, String Admin){
+    public Site(String Site_Name,String Tel,int Site_Id, String Email, String Address){
         this.site_name = Site_Name;
         this.site_id = Site_Id;
         this.tel = Tel;
         this.email = Email;
         this.address = Address;
-        this.admin = Admin;
     }
 
     public int getSite_id() {
@@ -37,7 +36,7 @@ public class Site {
         return site_name;
     }
 
-    public String getAdmin() {
-        return admin;
-    }
+//    public String getAdmin() {
+//        return admin;
+//    }
 }

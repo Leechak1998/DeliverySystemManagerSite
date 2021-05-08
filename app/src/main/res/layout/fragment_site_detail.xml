@@ -165,36 +165,6 @@
                 android:textSize="@dimen/package_detail_font_size" />
 
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingLeft="@dimen/padding_value"
-                android:paddingTop="@dimen/padding_value"
-                android:paddingBottom="@dimen/padding_value"
-                android:text="Admin:"
-                android:textAlignment="textStart"
-                android:textSize="@dimen/package_detail_font_size"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/Site_Admin"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="3.3"
-                android:paddingTop="@dimen/padding_value"
-                android:paddingBottom="@dimen/padding_value"
-
-                android:text="123312312313"
-                android:textAlignment="textStart"
-                android:textSize="@dimen/package_detail_font_size" />
-
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

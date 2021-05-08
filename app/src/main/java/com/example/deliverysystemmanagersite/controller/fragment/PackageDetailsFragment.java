@@ -63,7 +63,7 @@ public class PackageDetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.fragment_package_details, container, false);
         init();
-        setListener();
+//        setListener();
         return root;
     }
 
@@ -87,32 +87,33 @@ public class PackageDetailsFragment extends Fragment {
         packageId.setText(package_selected.getPackageId()+"");
     }
     //实现日历选择日期
-    final Calendar myCalendar = Calendar.getInstance();
-
-    DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
-        @Override
-
-        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-            myCalendar.set(Calendar.YEAR, year);
-            myCalendar.set(Calendar.MONTH, monthOfYear);
-            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-            updateLabel();
-        }
-
-        private void updateLabel() {
-            String myFormat = "MM/dd/yyyy";
-            SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
-            delivery_date.setText(sdf.format(myCalendar.getTime()));
-        }
-
-    };
+//    final Calendar myCalendar = Calendar.getInstance();
+//
+//    DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+//        @Override
+//
+//        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+//            myCalendar.set(Calendar.YEAR, year);
+//            myCalendar.set(Calendar.MONTH, monthOfYear);
+//            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+//            updateLabel();
+//        }
+//
+//        private void updateLabel() {
+//            String myFormat = "MM/dd/yyyy";
+//            SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+//            delivery_date.setText(sdf.format(myCalendar.getTime()));
+//        }
+//
+//    };
     //
-    private void setListener(){
-        //日历选择日期的监听器
-        delivery_date.setOnClickListener(view->{
-            new DatePickerDialog(this.getContext(), date, myCalendar
-                    .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                    myCalendar.get(Calendar.DAY_OF_MONTH)).show();
-        });
-    }
+//    private void setListener(){
+//        日历选择日期的监听器
+//        delivery_date.setOnClickListener(view->{
+//            new DatePickerDialog(this.getContext(), date, myCalendar
+//                    .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+//                    myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+//        });
+//
+//    }
 }

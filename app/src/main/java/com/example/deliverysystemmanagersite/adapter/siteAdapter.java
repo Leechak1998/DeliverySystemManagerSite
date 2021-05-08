@@ -29,14 +29,14 @@ public class siteAdapter extends ArrayAdapter<Site> {
         TextView name = (TextView) view.findViewById(R.id.site_name);
         TextView id = (TextView) view.findViewById(R.id.site_id);
         TextView address = (TextView) view.findViewById(R.id.site_address);
-        TextView admin = (TextView) view.findViewById(R.id.site_admin);
+//        TextView admin = (TextView) view.findViewById(R.id.site_admin);
         TextView email = (TextView) view.findViewById(R.id.site_email);
         TextView tel = (TextView) view.findViewById(R.id.site_tel);
 
         name.setText(site.getSite_name());
         id.setText(site.getSite_id()+"");
         address.setText(site.getAddress());
-        admin.setText(site.getAdmin());
+//        admin.setText(site.getAdmin());
         email.setText(site.getEmail());
         tel.setText(site.getTel());
         return view;

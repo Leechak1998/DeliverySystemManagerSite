@@ -101,7 +101,6 @@ public class PackageFragment extends Fragment {
         });
 
         TouchListener(btnSearch);
-
         //Click one of the listview items, go to item details page
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
