@@ -42,26 +42,25 @@ public class AddVendorFragment extends Fragment {
     }
 
     private void init() {
-        et_vendorname = (EditText) root.findViewById(R.id.etSitename);
+        et_vendorname = (EditText) root.findViewById(R.id.etVendorname);
         et_address = (EditText) root.findViewById(R.id.etAddress);
         et_email = (EditText) root.findViewById(R.id.etEmail);
         et_phone = (EditText) root.findViewById(R.id.etPhone);
         btn_submit = (Button) root.findViewById(R.id.btnSub);
         btn_cancel = (Button) root.findViewById(R.id.btnCan);
 
-        btn_submit.setOnClickListener(view -> new Thread(() -> {
+        btn_submit.setOnClickListener(view -> {
 
-            HttpConnectionUtil htc = new HttpConnectionUtil();
-            String test = htc.doGet("http://10.0.2.2:8339/");
-            try {
-                JSONObject jsonObject = new JSONObject(test);
-                String um = jsonObject.getString("username");
-                System.out.println("username:" + um);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            System.out.println("------" + test);
+            String venderName = et_vendorname.getText().toString();
+            String email = et_email.getText().toString();
+            String tel = et_phone.getText().toString();
+            String address = et_address.getText().toString();
+            new Thread(() -> {
 
-        }).start());
+                HttpConnectionUtil htc = new HttpConnectionUtil();
+                System.out.println(htc.doGet("http://10.0.2.2:8339/createVendor?vendorName=" + venderName + "&email=" + email + "&telephoneNumber=" + tel + "&address=" + address));
+
+            }).start();
+        });
     }
 }

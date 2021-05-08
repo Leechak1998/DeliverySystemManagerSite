@@ -6,6 +6,7 @@ public class Vendor {
     private int vendor_id;
     private String email;
     private String address;
+
     public Vendor(String Vendor_Name,String Tel,int Vendor_Id, String Email, String Address){
         this.vendor_name = Vendor_Name;
         this.vendor_id = Vendor_Id;

@@ -83,9 +83,16 @@ public class AddPackagesModel {
     }
 
     //vendor_id state send_data received_data departure destination
-    public void sendPackageDataToServer(String dep, String des, String dri, int state){
+    //String dep, String des, String dri, int state
+    public void sendPackageDataToServer(Vendor vendor, Site site, Driver driver, int state){
+        int driverID = driver.getDriver_id();
+        String vendorName = vendor.getVendor_name();
+        String departure = vendor.getAddress();
+        String destination = site.getAddress();
+        System.out.println("driverID=" + driverID + "  vendorName=" + vendorName + "  departure=" + departure + "  destination=" + destination);
+
         HttpConnectionUtil htc = new HttpConnectionUtil();
-        htc.doGet("http://10.0.2.2:8338/...");
+        System.out.println(htc.doGet("http://10.0.2.2:8339/createPackage?driverId=" + driverID + "&vendorName=" + vendorName + "&departure=" + departure + "&destination=" + destination));
     }
 
 }

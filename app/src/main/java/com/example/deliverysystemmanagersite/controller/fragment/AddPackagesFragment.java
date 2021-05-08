@@ -42,9 +42,9 @@ public class AddPackagesFragment extends Fragment {
     private static int ADD_TO = 1;
     private static int ADD_DRIVER = 2;
 
-    private String selFrom;
-    private String selTo;
-    private String selDriver;
+    private Vendor selFrom;
+    private Site selTo;
+    private Driver selDriver;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -86,7 +86,7 @@ public class AddPackagesFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 //selFrom = listFrom.get(i);
-                selFrom = list_departure.get(i).getVendor_name();
+                selFrom = list_departure.get(i);
             }
 
             @Override
@@ -100,7 +100,7 @@ public class AddPackagesFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 //selTo = listTo.get(i);
-                selTo = list_site.get(i).getSite_name();
+                selTo = list_site.get(i);
             }
 
             @Override
@@ -113,7 +113,7 @@ public class AddPackagesFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 //selDriver = listDriver.get(i);
-                selDriver = list_driver.get(i).getDriver_name();
+                selDriver = list_driver.get(i);
             }
 
             @Override

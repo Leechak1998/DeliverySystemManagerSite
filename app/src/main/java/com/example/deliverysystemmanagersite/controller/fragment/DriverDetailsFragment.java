@@ -71,18 +71,23 @@ public class DriverDetailsFragment extends Fragment {
     }
 
     public void setListener(){
-            Edit.setOnClickListener(view->{
+
+        Edit.setOnClickListener(view -> {
+            new Thread(() -> {
                 HttpConnectionUtil htc = new HttpConnectionUtil();
                 String Tel = tel.getText().toString();
                 String Driver_name = driver_name.getText().toString();
                 String Email = email.getText().toString();
                 String Driver_id = driver_id.getText().toString();
-                Driver d = new Driver(Driver_name,Tel,Integer.parseInt(Driver_id),Email);
-                htc.doGet("http://10.0.2.2:8339/updateSite?driverName=" + d.getDriver_name() +"&tel="+d.getTel()+ "&driverId=" + d.getDriver_id() + "&email="+d.getEmail());
+                Driver d = new Driver(Driver_name, Tel, Integer.parseInt(Driver_id), Email);
+                System.out.println("drive modify" + htc.doGet("http://10.0.2.2:8339/updateDriver?driverName=" + d.getDriver_name() + "&telephoneNumber=" + d.getTel() + "&driverId=" + d.getDriver_id() + "&email=" + d.getEmail()));
+
                 tel.setText(Tel);
                 driver_name.setText(Driver_name);
                 email.setText(Email);
-            });
+            }).start();
+
+        });
 
     }
 }

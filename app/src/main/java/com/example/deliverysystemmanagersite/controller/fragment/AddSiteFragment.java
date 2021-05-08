@@ -51,16 +51,14 @@ public class AddSiteFragment extends Fragment {
 
         btn_submit.setOnClickListener(view -> new Thread(() -> {
 
+            String siteName = et_sitename.getText().toString();
+            String email = et_email.getText().toString();
+            String tel = et_phone.getText().toString();
+            String address = et_address.getText().toString();
+
             HttpConnectionUtil htc = new HttpConnectionUtil();
-            String test = htc.doGet("http://10.0.2.2:8339/");
-            try {
-                JSONObject jsonObject = new JSONObject(test);
-                String um = jsonObject.getString("username");
-                System.out.println("username:" + um);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            System.out.println("------" + test);
+            System.out.println(htc.doGet("http://10.0.2.2:8339/createSite?siteName=" + siteName +"&email=" + email + "&telephoneNumber=" + tel + "&address=" + address));
+
 
         }).start());
     }
