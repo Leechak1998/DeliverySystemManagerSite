@@ -24,11 +24,11 @@ public class AddPackagesModel {
         //requestData
 
         Vendor v1 = new Vendor("Vendor1", "123", 0, "123@qq", "Hampton");
-        Site s1 = new Site("Site1", "321", 0, "321@qq", "Crossings", "jack");
+        Site s1 = new Site("Site1", "321", 0, "321@qq", "Crossings");
         Driver d1 = new Driver("jackson", "12333", 0 , "jack@qq");
 
         Vendor v2 = new Vendor("Vendor2", "123", 0, "123@qq", "Hampton");
-        Site s2 = new Site("Site2", "321", 0, "321@qq", "Crossings", "jack");
+        Site s2 = new Site("Site2", "321", 0, "321@qq", "Crossings");
         Driver d2 = new Driver("jackson2", "12333", 0 , "jack@qq");
 
         list_departure.add(v1);

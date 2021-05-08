@@ -74,7 +74,7 @@ public class SiteDetailFragment extends Fragment {
         site_id = (TextView) root.findViewById(R.id.Site_Id);
         email = (TextView) root.findViewById(R.id.Site_Email);
         site_address = (TextView) root.findViewById(R.id.Site_Address);
-        site_admin = (TextView) root.findViewById(R.id.Site_Admin);
+
 
         Edit = (ImageButton) root.findViewById(R.id.Site_edit);
 
@@ -83,7 +83,7 @@ public class SiteDetailFragment extends Fragment {
         site_id.setText(site_selected.getSite_id()+"");
         email.setText(site_selected.getEmail());
         site_address.setText(site_selected.getAddress());
-        site_admin.setText(site_selected.getAdmin());
+
     }
     public void setListener(){
         Edit.setOnClickListener(view->{
