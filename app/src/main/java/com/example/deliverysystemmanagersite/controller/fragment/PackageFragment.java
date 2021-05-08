@@ -18,6 +18,10 @@ import android.widget.Toast;
 import com.example.deliverysystemmanagersite.R;
 import com.example.deliverysystemmanagersite.adapter.PackageAdapter;
 import com.example.deliverysystemmanagersite.model.PackageViewModel;
+import com.example.deliverysystemmanagersite.model.Packages;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -29,6 +33,7 @@ import androidx.navigation.fragment.NavHostFragment;
 public class PackageFragment extends Fragment {
 
     private PackageFragment fra;
+    private List<Packages> pList;
     private PackageViewModel packageViewModel;
     private View root;
     private ListView listView;
@@ -48,12 +53,11 @@ public class PackageFragment extends Fragment {
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        packageViewModel = new ViewModelProvider(requireActivity()).get(PackageViewModel.class);
+//        packageViewModel = new ViewModelProvider(requireActivity()).get(PackageViewModel.class);
         root = inflater.inflate(R.layout.fragment_package, container, false);
         init();
         setListener();
-
-
+        packageViewModel = new ViewModelProvider(requireActivity()).get(PackageViewModel.class);
         return root;
     }
 
@@ -63,13 +67,23 @@ public class PackageFragment extends Fragment {
         btnFilter = (ImageButton) root.findViewById(R.id.imgBtnFilter);
         etSearchBar = (EditText) root.findViewById(R.id.etSearch);
 
-        adapter = new PackageAdapter(getActivity(), R.layout.packages_item, packageViewModel.getText());
-        listView.setAdapter(adapter);
+        packageViewModel = new PackageViewModel();
+        pList = new ArrayList<>();
+        pList = packageViewModel.getList();
+        listView.setAdapter(new PackageAdapter(getActivity(), R.layout.packages_item, pList));
 
         fra = this;
     }
 
     private void setListener() {
+
+        listView.setOnItemClickListener((adapterView, view, i, l) -> {
+            packageViewModel.selectPackage(pList.get(i));
+
+            Navigation.findNavController(root);
+            NavHostFragment.findNavController(fra).navigate(R.id.navigation_packDetail);
+
+        });
 
         btnSearch.setOnClickListener(view -> {
             if (etSearchBar.length() == 0){
@@ -99,17 +113,7 @@ public class PackageFragment extends Fragment {
 
         TouchListener(btnSearch);
         //Click one of the listview items, go to item details page
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Bundle bundle = new Bundle();
-                bundle.putInt("index", i);
 
-                Navigation.findNavController(root);
-                NavHostFragment.findNavController(fra).navigate(R.id.navigation_packDetail, bundle);
-
-            }
-        });
     }
 
     //Click image button, change background color

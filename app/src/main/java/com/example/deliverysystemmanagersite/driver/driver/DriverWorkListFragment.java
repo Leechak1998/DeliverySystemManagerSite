@@ -32,10 +32,8 @@ public class DriverWorkListFragment extends Fragment {
     private ImageButton btnFilter;
     private EditText etSearchBar;
 
-    private DriverWorkListAdapter adapter;
     private DriverWorkListFragment fra;
     private DriverWorkListViewModel viewModel;
-    private List<String> list;
     private List<Packages> pList;
 
     @Override
@@ -48,8 +46,8 @@ public class DriverWorkListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.fragment_driver_work_list, container, false);
         init();
-        viewModel = new ViewModelProvider(requireActivity()).get(DriverWorkListViewModel.class);
 
+        viewModel = new ViewModelProvider(requireActivity()).get(DriverWorkListViewModel.class);
         return root;
     }
 
@@ -66,8 +64,6 @@ public class DriverWorkListFragment extends Fragment {
         listView.setAdapter(new DriverWorkListAdapter(getActivity(), R.layout.packages_item, pList));
 
         listView.setOnItemClickListener((adapterView, view, i, l) -> {
-            //viewModel.select(list.get(i));
-            //viewModel.select(pList.get(i).getPackageId()+"");
             viewModel.selectPackage(pList.get(i));
 
             Navigation.findNavController(root);

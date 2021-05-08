@@ -17,10 +17,10 @@ import androidx.annotation.Nullable;
 
 import static java.security.AccessController.getContext;
 
-public class driverAdapter extends ArrayAdapter<Driver> {
+public class DriverAdapter extends ArrayAdapter<Driver> {
     private int resourceId;
 
-    public driverAdapter(@NonNull Context context, int resource, List<Driver> object) {
+    public DriverAdapter(@NonNull Context context, int resource, List<Driver> object) {
         super(context, resource, object);
         resourceId = resource;
     }
@@ -36,7 +36,7 @@ public class driverAdapter extends ArrayAdapter<Driver> {
         TextView tel = (TextView) view.findViewById(R.id.Tel);
         TextView email = (TextView) view.findViewById(R.id.Email);
 
-        System.out.println("输出driver1："+driver.getDriver_id()+"  "+driver.getDriver_name());
+        //System.out.println("输出driver1："+driver.getDriver_id()+"  "+driver.getDriver_name());
 
         name.setText(driver.getDriver_name());
         id.setText(driver.getDriver_id()+"");

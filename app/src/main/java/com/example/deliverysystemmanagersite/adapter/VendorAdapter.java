@@ -14,9 +14,9 @@ import com.example.deliverysystemmanagersite.model.Vendor;
 
 import java.util.List;
 
-public class vendorAdapter extends ArrayAdapter<Vendor> {
+public class VendorAdapter extends ArrayAdapter<Vendor> {
     private int resourceId;
-    public vendorAdapter(@NonNull Context context, int resource, List<Vendor> object) {
+    public VendorAdapter(@NonNull Context context, int resource, List<Vendor> object) {
         super(context, resource, object);
         resourceId = resource;
     }

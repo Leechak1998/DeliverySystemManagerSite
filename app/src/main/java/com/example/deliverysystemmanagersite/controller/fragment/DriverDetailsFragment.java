@@ -13,6 +13,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.deliverysystemmanagersite.R;
+import com.example.deliverysystemmanagersite.driver.driver.DriverWorkListViewModel;
 import com.example.deliverysystemmanagersite.model.Driver;
 import com.example.deliverysystemmanagersite.model.DriverViewModel;
 import com.example.deliverysystemmanagersite.model.Site;
@@ -27,8 +28,6 @@ public class DriverDetailsFragment extends Fragment {
     private TextView driver_id;
     private TextView email;
     private DriverViewModel driverViewModel;
-    private List<Driver> driver_List;
-    private Driver driver_selected;
     private ImageButton Edit;
 
 
@@ -40,19 +39,26 @@ public class DriverDetailsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            driverViewModel = new ViewModelProvider(this).get(DriverViewModel.class);
-            driverViewModel.init();
-            driver_List = driverViewModel.getText();
-            driver_selected = driver_List.get(getArguments().getInt("index"));
-        }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.fragment_driver_details, container, false);
-        init();
-        setListener();
+
+        driverViewModel = new ViewModelProvider(requireActivity()).get(DriverViewModel.class);
+        driverViewModel.getSelectedDriver().observe(getViewLifecycleOwner(), item -> {
+            init();
+
+            System.out.println("===111===" + driverViewModel.getSelectedDriver().getValue().getDriver_name());
+            driver_name.setText(driverViewModel.getSelectedDriver().getValue().getDriver_name());
+            tel.setText(driverViewModel.getSelectedDriver().getValue().getTel());
+            driver_id.setText(driverViewModel.getSelectedDriver().getValue().getDriver_id()+"");
+            email.setText(driverViewModel.getSelectedDriver().getValue().getEmail());
+
+            setListener();
+        });
+
         return root;
     }
 
@@ -61,14 +67,9 @@ public class DriverDetailsFragment extends Fragment {
         tel = (TextView) root.findViewById(R.id.driver_tel);
         driver_id = (TextView) root.findViewById(R.id.driver_id);
         email = (TextView) root.findViewById(R.id.driver_email);
-
         Edit = (ImageButton) root.findViewById(R.id.Driver_edit);
-
-        driver_name.setText(driver_selected.getDriver_name());
-        tel.setText(driver_selected.getTel());
-        driver_id.setText(driver_selected.getDriver_id()+"");
-        email.setText(driver_selected.getEmail());
     }
+
     public void setListener(){
             Edit.setOnClickListener(view->{
                 HttpConnectionUtil htc = new HttpConnectionUtil();

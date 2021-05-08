@@ -14,6 +14,8 @@ import java.util.List;
 import java.util.Map;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.deliverysystemmanagersite.controller.fragment.PackageFragment;
@@ -25,7 +27,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class PackageViewModel extends ViewModel implements Serializable {
+public class PackageViewModel extends ViewModel{
 
     private static int SOT_BY_NUMBER_INC = 0;
     private static int SOT_BY_NUMBER_DEC = 1;
@@ -34,9 +36,28 @@ public class PackageViewModel extends ViewModel implements Serializable {
     private static int SORT_BY_STATE = 4;
 
     private List<Packages> packagesList = new ArrayList<>();
+    private final MutableLiveData<String> selected = new MutableLiveData<String>();
+    private final MutableLiveData<Packages> selectedPackage = new MutableLiveData<>();
 
     public PackageViewModel() {
         initPack();
+    }
+
+    public void selectPackage(Packages s) {
+        selectedPackage.setValue(s);
+    }
+
+    public LiveData<String> getSelected() {
+        return selected;
+    }
+
+    public List<Packages> getList(){
+        return packagesList;
+
+    }
+
+    public LiveData<Packages> getSelectedPackage() {
+        return selectedPackage;
     }
 
     public List<Packages> getText() {
@@ -54,7 +75,7 @@ public class PackageViewModel extends ViewModel implements Serializable {
                     SerializableList s = new SerializableList();
                     s = (SerializableList)bundle.getSerializable("data");
                     packagesList = s.getPackagesList();
-                    System.out.println("----id:" + packagesList.get(0).getPackageId() + "destination" + packagesList.get(0).getDestination());
+                    //System.out.println("----id:" + packagesList.get(0).getPackageId() + "destination" + packagesList.get(0).getDestination());
                     break;
 
             }

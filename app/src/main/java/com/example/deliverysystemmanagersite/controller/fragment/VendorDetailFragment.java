@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 
 import com.example.deliverysystemmanagersite.R;
+import com.example.deliverysystemmanagersite.driver.driver.DriverWorkListViewModel;
 import com.example.deliverysystemmanagersite.model.Vendor;
 import com.example.deliverysystemmanagersite.model.VendorViewModel;
 import com.example.deliverysystemmanagersite.util.HttpConnectionUtil;
@@ -28,26 +29,31 @@ public class VendorDetailFragment extends Fragment {
     private TextView email;
     private TextView address;
     private VendorViewModel vendorViewModel;
-    private List<Vendor> vendor_List;
-    private Vendor vendor_selected;
     private ImageButton Edit;
     private View root;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            vendorViewModel = new ViewModelProvider(this).get(VendorViewModel.class);
-            vendor_List = vendorViewModel.getText();
-            vendor_selected = vendor_List.get(getArguments().getInt("index"));
-        }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.fragment_vendor_detail, container, false);
-        init();
-        setListener();
+
+        vendorViewModel = new ViewModelProvider(requireActivity()).get(VendorViewModel.class);
+        vendorViewModel.getSelectedVendor().observe(getViewLifecycleOwner(), item -> {
+            init();
+
+            vendor_name.setText(vendorViewModel.getSelectedVendor().getValue().getVendor_name());
+            tel.setText(vendorViewModel.getSelectedVendor().getValue().getTel());
+            vendor_id.setText(vendorViewModel.getSelectedVendor().getValue().getVendor_id()+"");
+            email.setText(vendorViewModel.getSelectedVendor().getValue().getEmail());
+            address.setText(vendorViewModel.getSelectedVendor().getValue().getAddress());
+
+            setListener();
+        });
         return root;
     }
 
@@ -57,14 +63,7 @@ public class VendorDetailFragment extends Fragment {
         vendor_id = (TextView) root.findViewById(R.id.Vendor_Id);
         email = (TextView) root.findViewById(R.id.Vendor_Email);
         address = (TextView) root.findViewById(R.id.Vendor_Address);
-
         Edit = (ImageButton) root.findViewById(R.id.Vendor_edit);
-
-        vendor_name.setText(vendor_selected.getVendor_name());
-        tel.setText(vendor_selected.getTel());
-        vendor_id.setText(vendor_selected.getVendor_id()+"");
-        email.setText(vendor_selected.getEmail());
-        address.setText(vendor_selected.getAddress());
     }
     public void setListener(){
         Edit.setOnClickListener(view->{
@@ -82,4 +81,5 @@ public class VendorDetailFragment extends Fragment {
             address.setText(Address);
         });
     }
+
 }

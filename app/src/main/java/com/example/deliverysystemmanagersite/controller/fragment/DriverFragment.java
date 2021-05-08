@@ -4,12 +4,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.deliverysystemmanagersite.R;
-import com.example.deliverysystemmanagersite.adapter.driverAdapter;
+import com.example.deliverysystemmanagersite.adapter.DriverAdapter;
+import com.example.deliverysystemmanagersite.model.Driver;
 import com.example.deliverysystemmanagersite.model.DriverViewModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -22,9 +25,9 @@ public class DriverFragment extends Fragment {
 
     private View root;
     private DriverViewModel driverViewModel;
-    private driverAdapter adapter;
     private ListView listView;
     private DriverFragment fra;
+    private List<Driver> pList;
 
     public static DriverFragment newInstance() {
         DriverFragment fragment = new DriverFragment();
@@ -38,40 +41,35 @@ public class DriverFragment extends Fragment {
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        driverViewModel = new ViewModelProvider(this).get(DriverViewModel.class);
         root = inflater.inflate(R.layout.fragment_driver, container, false);
 
         init();
         setListener();
+        driverViewModel = new ViewModelProvider(requireActivity()).get(DriverViewModel.class);
         return root;
     }
-//
-//    public void init(){
-//        listView = (ListView) root.findViewById(R.id.Driver_Lv);
-//        adapter = new driverAdapter(getActivity(), R.layout.driver_item, driverViewModel.getText());
-//        listView.setAdapter(adapter);
-//
-//        fra = this;
-//    }
+
 
     public void init(){
         listView = (ListView) root.findViewById(R.id.Driver_Lv);
-        adapter = new driverAdapter(getActivity(), R.layout.driver_item,driverViewModel.getText());
-        listView.setAdapter(adapter);
+
+        driverViewModel = new DriverViewModel();
+        pList = new ArrayList<>();
+        pList = driverViewModel.getList();
+        listView.setAdapter(new DriverAdapter(getActivity(), R.layout.driver_item, pList));
+
         fra = this;
     }
     private void setListener() {
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Bundle bundle = new Bundle();
-                bundle.putInt("index", i);
-                Navigation.findNavController(root);
-                NavHostFragment
-                        .findNavController(fra)
-                        .navigate(R.id.navigation_DriverDetail, bundle);
 
-            }
+
+        listView.setOnItemClickListener((adapterView, view, i, l) -> {
+            driverViewModel.selectDriver(pList.get(i));
+
+            Navigation.findNavController(root);
+            NavHostFragment.findNavController(fra).navigate(R.id.navigation_DriverDetail);
+
         });
+
     }
 }

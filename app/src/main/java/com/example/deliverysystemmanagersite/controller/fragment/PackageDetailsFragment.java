@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import com.example.deliverysystemmanagersite.R;
 import com.example.deliverysystemmanagersite.db.ConnectDb;
+import com.example.deliverysystemmanagersite.driver.driver.DriverWorkListViewModel;
 import com.example.deliverysystemmanagersite.model.PackageViewModel;
 import com.example.deliverysystemmanagersite.model.Packages;
 
@@ -49,21 +50,29 @@ public class PackageDetailsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            System.out.println("----" + getArguments().getInt("index"));
-            packageViewModel = new ViewModelProvider(this).get(PackageViewModel.class);
-            package_List = packageViewModel.getText();
-//            System.out.println("----" + package_List.size());
-            package_selected = package_List.get(getArguments().getInt("index"));
-        }
 
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.fragment_package_details, container, false);
-        init();
-//        setListener();
+
+        packageViewModel = new ViewModelProvider(requireActivity()).get(PackageViewModel.class);
+        packageViewModel.getSelectedPackage().observe(getViewLifecycleOwner(), item -> {
+//            TextView textView = (TextView) root.findViewById(R.id.tv);
+//            textView.setText(viewModel.getSelected().getValue());
+            init();
+            departure.setText(packageViewModel.getSelectedPackage().getValue().getDeparture());
+            destination.setText(packageViewModel.getSelectedPackage().getValue().getDestination());
+            driver.setText(packageViewModel.getSelectedPackage().getValue().getDriver());
+            tel.setText(packageViewModel.getSelectedPackage().getValue().getTel());
+            packageId.setText(packageViewModel.getSelectedPackage().getValue().getPackageId()+"");
+            vendor.setText(packageViewModel.getSelectedPackage().getValue().getVendor());
+            delivery_date.setText(packageViewModel.getSelectedPackage().getValue().getDate());
+            state.setText(packageViewModel.getSelectedPackage().getValue().getState());
+
+        });
+
         return root;
     }
 
@@ -76,44 +85,5 @@ public class PackageDetailsFragment extends Fragment {
         delivery_date = (TextView) root.findViewById(R.id.deliver_date);
         state = (TextView) root.findViewById(R.id.status);
         packageId = (TextView) root.findViewById(R.id.packageId);
-
-        departure.setText(package_selected.getDeparture());
-        destination.setText(package_selected.getDestination());
-        driver.setText(package_selected.getDriver());
-        tel.setText(package_selected.getTel());
-        vendor.setText(package_selected.getVendor());
-        delivery_date.setText(package_selected.getDate());
-        state.setText(package_selected.getState());
-        packageId.setText(package_selected.getPackageId()+"");
     }
-    //实现日历选择日期
-//    final Calendar myCalendar = Calendar.getInstance();
-//
-//    DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
-//        @Override
-//
-//        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-//            myCalendar.set(Calendar.YEAR, year);
-//            myCalendar.set(Calendar.MONTH, monthOfYear);
-//            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-//            updateLabel();
-//        }
-//
-//        private void updateLabel() {
-//            String myFormat = "MM/dd/yyyy";
-//            SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
-//            delivery_date.setText(sdf.format(myCalendar.getTime()));
-//        }
-//
-//    };
-    //
-//    private void setListener(){
-//        日历选择日期的监听器
-//        delivery_date.setOnClickListener(view->{
-//            new DatePickerDialog(this.getContext(), date, myCalendar
-//                    .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-//                    myCalendar.get(Calendar.DAY_OF_MONTH)).show();
-//        });
-//
-//    }
 }

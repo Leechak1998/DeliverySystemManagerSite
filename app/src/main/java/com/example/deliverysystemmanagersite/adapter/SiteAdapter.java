@@ -13,9 +13,9 @@ import com.example.deliverysystemmanagersite.model.Site;
 
 import java.util.List;
 
-public class siteAdapter extends ArrayAdapter<Site> {
+public class SiteAdapter extends ArrayAdapter<Site> {
     private  int resourceId;
-    public siteAdapter(@NonNull Context context, int resource, List<Site> object) {
+    public SiteAdapter(@NonNull Context context, int resource, List<Site> object) {
         super(context, resource,object);
         resourceId = resource;
     }
