@@ -7,6 +7,7 @@ public class Site {
     private String email;
     private String address;
     private String admin;
+
     public Site(String Site_Name,String Tel,int Site_Id, String Email, String Address, String Admin){
         this.site_name = Site_Name;
         this.site_id = Site_Id;

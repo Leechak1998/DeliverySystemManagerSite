@@ -85,10 +85,31 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/ly4"
+            android:id="@+id/ly5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/ly3"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text="Email:" />
+
+            <EditText
+                android:id="@+id/etEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="7" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ly4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ly5"
             android:gravity="center"
             android:orientation="horizontal"
             android:paddingTop="10dp">

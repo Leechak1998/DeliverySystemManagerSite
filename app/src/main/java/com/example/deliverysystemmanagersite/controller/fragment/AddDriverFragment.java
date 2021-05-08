@@ -37,8 +37,6 @@ public class AddDriverFragment extends Fragment {
 
         init();
 
-
-
         return root;
     }
 
@@ -61,5 +59,6 @@ public class AddDriverFragment extends Fragment {
             }
             System.out.println("------" + test);
         }).start());
+
     }
 }

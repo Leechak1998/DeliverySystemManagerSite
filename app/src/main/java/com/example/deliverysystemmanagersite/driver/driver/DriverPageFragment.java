@@ -26,10 +26,6 @@ public class DriverPageFragment extends AppCompatActivity {
         setContentView(R.layout.fragment_driver_page);
 
         BottomNavigationView navView = findViewById(R.id.nav_view_driver);
-//        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-//                R.id.navigation_workList_driver, R.id.navigation_mine_driver)
-//                .build();
-        //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_driver);
         NavigationUI.setupActionBarWithNavController(this, navController);

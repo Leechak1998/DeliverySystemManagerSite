@@ -28,6 +28,7 @@ public class Packages {
         this.packageId =  packageId;
         this.driver = driver;
         this.vendor = vendor;
+        this.departure = vendor;
         this.destination = destination;
     }
 
@@ -37,7 +38,7 @@ public class Packages {
     }
 
     public String getDriver() {
-        return "Driver: " + driver;
+        return driver;
     }
 
     public String getVendor() {

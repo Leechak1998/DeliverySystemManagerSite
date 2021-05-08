@@ -27,8 +27,6 @@ public class PackageAdapter extends ArrayAdapter<Packages>{
         resourceId = resource;
     }
 
-
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
         Packages packages = getItem(position); //获取当前项的package实例
@@ -46,8 +44,4 @@ public class PackageAdapter extends ArrayAdapter<Packages>{
 
         return view;
     }
-
-
-
-
 }

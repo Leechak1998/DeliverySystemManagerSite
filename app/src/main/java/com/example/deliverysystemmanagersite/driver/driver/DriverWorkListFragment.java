@@ -12,18 +12,31 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 import com.example.deliverysystemmanagersite.R;
+import com.example.deliverysystemmanagersite.adapter.PackageAdapter;
+import com.example.deliverysystemmanagersite.adapter.driverAdpter.DriverWorkListAdapter;
+import com.example.deliverysystemmanagersite.model.Packages;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DriverWorkListFragment extends Fragment {
     private View root;
+
+    private ListView listView;
+    private ImageButton btnSearch;
+    private ImageButton btnFilter;
+    private EditText etSearchBar;
+
+    private DriverWorkListAdapter adapter;
     private DriverWorkListFragment fra;
     private DriverWorkListViewModel viewModel;
     private List<String> list;
+    private List<Packages> pList;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,34 +49,28 @@ public class DriverWorkListFragment extends Fragment {
         root = inflater.inflate(R.layout.fragment_driver_work_list, container, false);
         init();
         viewModel = new ViewModelProvider(requireActivity()).get(DriverWorkListViewModel.class);
-        /*
 
-        model = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
-        itemSelector.setOnClickListener(item -> {
-            model.select(item);
-        });
-
-         */
         return root;
     }
 
     public void init(){
         fra = this;
-        ListView listView = (ListView) root.findViewById(R.id.lv);
+        listView = (ListView) root.findViewById(R.id.lv);
+        btnSearch = (ImageButton) root.findViewById(R.id.imgBtnSearch);
+        btnFilter = (ImageButton) root.findViewById(R.id.imgBtnFilter);
+        etSearchBar = (EditText) root.findViewById(R.id.etSearch);
+
         viewModel = new DriverWorkListViewModel();
-        list = new ArrayList<>();
+        pList = new ArrayList<>();
+        pList = viewModel.getList();
+        listView.setAdapter(new DriverWorkListAdapter(getActivity(), R.layout.packages_item, pList));
 
-        list = viewModel.getList();
-        listView.setAdapter(new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, list));
+        listView.setOnItemClickListener((adapterView, view, i, l) -> {
+            //viewModel.select(list.get(i));
+            viewModel.select(pList.get(i).getPackageId()+"");
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                viewModel.select(list.get(i));
-
-                Navigation.findNavController(root);
-                NavHostFragment.findNavController(fra).navigate(R.id.navigation_workList_details_driver);
-            }
+            Navigation.findNavController(root);
+            NavHostFragment.findNavController(fra).navigate(R.id.navigation_workList_details_driver);
         });
 
     }

@@ -124,48 +124,14 @@ public class AddPackagesFragment extends Fragment {
 
         btnSub.setOnClickListener(view -> {
             System.out.println("From: " + selFrom + " To: " + selTo + " By: " + selDriver);
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    addPackagesModel.sendPackageDataToServer(selFrom, selTo, selDriver,0);
-                }
-            }).start();
+            new Thread(() -> addPackagesModel.sendPackageDataToServer(selFrom, selTo, selDriver,0)).start();
         });
+
+        btnCan.setOnClickListener(view -> {
+            //
+        });
+
     }
-
-
-//    public ArrayAdapter<?> setDepartureListAdapter(List<Vendor> list){
-//        //从得到的list 转化为ArrayAdapter<String>
-//        List<String> stringList = new ArrayList();
-//        for (int i=0; i<list.size(); i++){
-//            stringList.add(list.get(i).getVendor_name());
-//        }
-//        ArrayAdapter<?> arr_adapter= new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, stringList);
-//        arr_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        return arr_adapter;
-//    }
-//
-//    public ArrayAdapter<?> setDestinationListAdapter(List<Site> list){
-//        //从得到的list 转化为ArrayAdapter<String>
-//        List<String> stringList = new ArrayList();
-//        for (int i=0; i<list.size(); i++){
-//            stringList.add(list.get(i).getSite_name());
-//        }
-//        ArrayAdapter<?> arr_adapter= new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, stringList);
-//        arr_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        return arr_adapter;
-//    }
-//
-//    public ArrayAdapter<?> setDriverListAdapter(List<Driver> list){
-//        //从得到的list 转化为ArrayAdapter<String>
-//        List<String> stringList = new ArrayList();
-//        for (int i=0; i<list.size(); i++){
-//            stringList.add(list.get(i).getDriver_name());
-//        }
-//        ArrayAdapter<?> arr_adapter= new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, stringList);
-//        arr_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        return arr_adapter;
-//    }
 
 
 }

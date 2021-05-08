@@ -15,15 +15,12 @@ import org.json.JSONObject;
 
 public class PackageViewModel extends ViewModel {
 
-
-
     private static int SOT_BY_NUMBER_INC = 0;
     private static int SOT_BY_NUMBER_DEC = 1;
     private static int SORT_BY_TIME_DEC = 2;
     private static int SORT_BY_TIME_INC = 3;
     private static int SORT_BY_STATE_DEC = 4;
     private static int SORT_BY_STATE_INC = 5;
-
 
     private List<Packages> packagesList = new ArrayList<>();
 
@@ -36,8 +33,9 @@ public class PackageViewModel extends ViewModel {
     }
 
     public void initPack(){
-        HttpConnectionUtil htc = new HttpConnectionUtil();
-        String dataList = htc.doGet("http://10.0.2.2:8339/getPackage");
+        new Thread(() -> {
+            HttpConnectionUtil htc = new HttpConnectionUtil();
+            String dataList = htc.doGet("http://10.0.2.2:8339/getPackage");
             try{
                 JSONObject JSON_obj = new JSONObject(dataList);
                 JSONArray PackageList = JSON_obj.getJSONArray("drivers");
@@ -55,6 +53,7 @@ public class PackageViewModel extends ViewModel {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+        }).start();
     }
 
     public List<Packages> sortList(int requirement){

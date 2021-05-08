@@ -1,6 +1,7 @@
 package com.example.deliverysystemmanagersite.driver.driver;
 
-import android.content.ClipData;
+import com.example.deliverysystemmanagersite.model.Driver;
+import com.example.deliverysystemmanagersite.model.Packages;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,12 +21,16 @@ public class DriverWorkListViewModel extends ViewModel {
         return selected;
     }
 
-    public List<String> getList(){
-        List<String> list = new ArrayList<>();
-        list.add("aaa");
-        list.add("bbb");
-        list.add("ccc");
-        list.add("ddd");
-        return list;
+    public List<Packages> getList(){
+        //连接数据库
+        List<Packages> packagesList = new ArrayList<>();
+        Packages d1 = new Packages(0, "jackson", "South", "China");
+        Packages d2 = new Packages(1, "Sam", "London", "UK");
+
+        packagesList.add(d1);
+        packagesList.add(d2);
+
+        return packagesList;
     }
+
 }
