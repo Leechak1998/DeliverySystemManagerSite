@@ -2,24 +2,23 @@ package com.example.deliverysystemmanagersite.controller.fragment;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
 import com.example.deliverysystemmanagersite.R;
+import com.example.deliverysystemmanagersite.adapter.CommentAdapter;
 import com.example.deliverysystemmanagersite.model.AddPackagesModel;
+import com.example.deliverysystemmanagersite.model.Driver;
+import com.example.deliverysystemmanagersite.model.Site;
+import com.example.deliverysystemmanagersite.model.Vendor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,11 +31,12 @@ public class AddPackagesFragment extends Fragment {
     private Button btnSub;
     private Button btnCan;
 
-    private List<String> listFrom = new ArrayList<String>();
-    private List<String> listTo = new ArrayList<String>();
-    private List<String> listDriver = new ArrayList<String>();
+    private List<Vendor> list_departure = new ArrayList<>();
+    private List<Site> list_site = new ArrayList<>();
+    private List<Driver> list_driver = new ArrayList<>();
 
     private AddPackagesModel addPackagesModel;
+    private CommentAdapter commentAdapter;
 
     private static int ADD_FROM = 0;
     private static int ADD_TO = 1;
@@ -69,13 +69,15 @@ public class AddPackagesFragment extends Fragment {
         btnCan = (Button) root.findViewById(R.id.btnCan);
 
         addPackagesModel = new AddPackagesModel();
-        listFrom = addPackagesModel.initList(ADD_FROM);
-        listTo = addPackagesModel.initList(ADD_TO);
-        listDriver = addPackagesModel.initList(ADD_DRIVER);
+        commentAdapter = new CommentAdapter();
 
-        spinnerFrom.setAdapter(setListAdapter(listFrom));
-        spinnerTo.setAdapter(setListAdapter(listTo));
-        spinnerDriver.setAdapter(setListAdapter(listDriver));
+        list_departure = (List<Vendor>) addPackagesModel.init_list(ADD_FROM);
+        list_site = (List<Site>) addPackagesModel.init_list(ADD_TO);
+        list_driver = (List<Driver>) addPackagesModel.init_list(ADD_DRIVER);
+
+        spinnerFrom.setAdapter(commentAdapter.setDepartureListAdapter(list_departure, root));
+        spinnerTo.setAdapter(commentAdapter.setDestinationListAdapter(list_site, root));
+        spinnerDriver.setAdapter(commentAdapter.setDriverListAdapter(list_driver, root));
     }
 
     private void setListener() {
@@ -83,7 +85,8 @@ public class AddPackagesFragment extends Fragment {
         spinnerFrom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                selFrom = listFrom.get(i);
+                //selFrom = listFrom.get(i);
+                selFrom = list_departure.get(i).getVendor_name();
             }
 
             @Override
@@ -96,7 +99,8 @@ public class AddPackagesFragment extends Fragment {
         spinnerTo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                selTo = listTo.get(i);
+                //selTo = listTo.get(i);
+                selTo = list_site.get(i).getSite_name();
             }
 
             @Override
@@ -108,7 +112,8 @@ public class AddPackagesFragment extends Fragment {
         spinnerDriver.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                selDriver = listDriver.get(i);
+                //selDriver = listDriver.get(i);
+                selDriver = list_driver.get(i).getDriver_name();
             }
 
             @Override
@@ -117,32 +122,50 @@ public class AddPackagesFragment extends Fragment {
             }
         });
 
-        btnSub.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                System.out.println("From: " + selFrom + " To: " + selTo + " By: " + selDriver);
-                /*
-                HttpConnectionUtil htc = new HttpConnectionUtil();
-                String test = htc.doGet("http://10.0.2.2:8339/addDriverGet?username="+et_username.getText().toString()+"&email="+et_email.getText().toString()+"&phone="+et_phone.getText().toString());
-                try {
-                    JSONObject jsonObject = new JSONObject(test);
-                    String um = jsonObject.getString("username");
-                    System.out.println("username:" + um);
-                } catch (JSONException e) {
-                    e.printStackTrace();
+        btnSub.setOnClickListener(view -> {
+            System.out.println("From: " + selFrom + " To: " + selTo + " By: " + selDriver);
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    addPackagesModel.sendPackageDataToServer(selFrom, selTo, selDriver,0);
                 }
-                System.out.println("------" + test);
-
-                */
-            }
+            }).start();
         });
     }
 
-    public ArrayAdapter<String> setListAdapter(List<String> list){
-        ArrayAdapter<String> arr_adapter= new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, list);
-        arr_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        return arr_adapter;
-    }
+
+//    public ArrayAdapter<?> setDepartureListAdapter(List<Vendor> list){
+//        //从得到的list 转化为ArrayAdapter<String>
+//        List<String> stringList = new ArrayList();
+//        for (int i=0; i<list.size(); i++){
+//            stringList.add(list.get(i).getVendor_name());
+//        }
+//        ArrayAdapter<?> arr_adapter= new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, stringList);
+//        arr_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        return arr_adapter;
+//    }
+//
+//    public ArrayAdapter<?> setDestinationListAdapter(List<Site> list){
+//        //从得到的list 转化为ArrayAdapter<String>
+//        List<String> stringList = new ArrayList();
+//        for (int i=0; i<list.size(); i++){
+//            stringList.add(list.get(i).getSite_name());
+//        }
+//        ArrayAdapter<?> arr_adapter= new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, stringList);
+//        arr_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        return arr_adapter;
+//    }
+//
+//    public ArrayAdapter<?> setDriverListAdapter(List<Driver> list){
+//        //从得到的list 转化为ArrayAdapter<String>
+//        List<String> stringList = new ArrayList();
+//        for (int i=0; i<list.size(); i++){
+//            stringList.add(list.get(i).getDriver_name());
+//        }
+//        ArrayAdapter<?> arr_adapter= new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, stringList);
+//        arr_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        return arr_adapter;
+//    }
 
 
 }

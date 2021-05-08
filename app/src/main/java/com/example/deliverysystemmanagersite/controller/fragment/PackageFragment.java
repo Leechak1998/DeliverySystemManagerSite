@@ -66,7 +66,7 @@ public class PackageFragment extends Fragment {
         btnFilter = (ImageButton) root.findViewById(R.id.imgBtnFilter);
         etSearchBar = (EditText) root.findViewById(R.id.etSearch);
 
-        adapter = new PackageAdapter(getActivity(), R.layout.packages_item,packageViewModel.getText());
+        adapter = new PackageAdapter(getActivity(), R.layout.packages_item, packageViewModel.getText());
         listView.setAdapter(adapter);
 
         fra = this;
