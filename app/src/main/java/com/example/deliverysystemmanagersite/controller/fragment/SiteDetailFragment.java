@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.deliverysystemmanagersite.R;
 import com.example.deliverysystemmanagersite.driver.driver.DriverWorkListViewModel;
@@ -76,21 +77,27 @@ public class SiteDetailFragment extends Fragment {
     }
 
     public void setListener(){
+
+
         Edit.setOnClickListener(view->{
+            String Tel = tel.getText().toString();
+            String Site_name = site_name.getText().toString();
+            String Email = email.getText().toString();
+            String Site_id = site_id.getText().toString();
+            String Address = site_address.getText().toString();
+            if(!Tel.equals("")&&!Site_name.equals("")&&!Address.equals("")&&!Email.equals("")){
             new Thread(() -> {
                 HttpConnectionUtil htc = new HttpConnectionUtil();
-                String Tel = tel.getText().toString();
-                String Site_name = site_name.getText().toString();
-                String Email = email.getText().toString();
-                String Site_id = site_id.getText().toString();
-                String Address = site_address.getText().toString();
+
                 Site s = new Site(Site_name,Tel,Integer.parseInt(Site_id),Email,Address);
                 System.out.println(htc.doGet("http://10.0.2.2:8339/updateSite?siteName=" + s.getSite_name() +"&telephoneNumber="+s.getTel()+ "&siteId=" + s.getSite_id() + "&email="+s.getEmail()+"&address="+s.getAddress()));
                 tel.setText(Tel);
                 site_name.setText(Site_name);
                 email.setText(Email);
                 site_address.setText(Address);
-            }).start();
+            }).start();}else{
+                Toast.makeText(getActivity(), "Your should fill all the information.", Toast.LENGTH_LONG).show();
+            }
 
         });
     }

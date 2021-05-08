@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.deliverysystemmanagersite.R;
 import com.example.deliverysystemmanagersite.util.HttpConnectionUtil;
@@ -47,7 +48,12 @@ public class AddDriverFragment extends Fragment {
         btn_submit = (Button) root.findViewById(R.id.btnSub);
         btn_cancel = (Button) root.findViewById(R.id.btnCan);
 
-        btn_submit.setOnClickListener(view -> new Thread(() -> {
+        btn_submit.setOnClickListener(view ->{
+            String userName = et_username.getText().toString();
+            String email = et_email.getText().toString();
+            String phone = et_phone.getText().toString();
+            if(!userName.equals("")&&!email.equals("")&&!phone.equals("")){
+            new Thread(() -> {
             HttpConnectionUtil htc = new HttpConnectionUtil();
             String test = htc.doGet("http://10.0.2.2:8339/addDriverGet?username="+et_username.getText().toString()+"&email="+et_email.getText().toString()+"&phone="+et_phone.getText().toString());
             try {
@@ -58,7 +64,10 @@ public class AddDriverFragment extends Fragment {
                 e.printStackTrace();
             }
             System.out.println("------" + test);
-        }).start());
+        }).start();}else {
+                Toast.makeText(getActivity(), "Your should fill all the information.", Toast.LENGTH_LONG).show();
+            }
+        });
 
     }
 }

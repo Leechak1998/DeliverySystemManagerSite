@@ -12,6 +12,7 @@ import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.deliverysystemmanagersite.R;
 import com.example.deliverysystemmanagersite.adapter.CommentAdapter;
@@ -123,8 +124,12 @@ public class AddPackagesFragment extends Fragment {
         });
 
         btnSub.setOnClickListener(view -> {
+//            if(!selFrom.equals("")&&!selTo.equals("")&&!selDriver.equals("")){
             System.out.println("From: " + selFrom + " To: " + selTo + " By: " + selDriver);
             new Thread(() -> addPackagesModel.sendPackageDataToServer(selFrom, selTo, selDriver,0)).start();
+//        } else {
+//                Toast.makeText(getActivity(), "Your should fill all the information.", Toast.LENGTH_LONG).show();
+//            }
         });
 
         btnCan.setOnClickListener(view -> {

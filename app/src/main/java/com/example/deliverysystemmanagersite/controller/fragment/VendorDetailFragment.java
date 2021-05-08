@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.example.deliverysystemmanagersite.R;
@@ -67,20 +68,24 @@ public class VendorDetailFragment extends Fragment {
     }
     public void setListener(){
         Edit.setOnClickListener(view->{
+            String Tel = tel.getText().toString();
+            String Vendor_name = vendor_name.getText().toString();
+            String Email = email.getText().toString();
+            String Vendor_id = vendor_id.getText().toString();
+            String Address = address.getText().toString();
+            if(!Tel.equals("")&&!Vendor_name.equals("")&&!Email.equals("")&&!Address.equals("")){
             new Thread(() -> {
                 HttpConnectionUtil htc = new HttpConnectionUtil();
-                String Tel = tel.getText().toString();
-                String Vendor_name = vendor_name.getText().toString();
-                String Email = email.getText().toString();
-                String Vendor_id = vendor_id.getText().toString();
-                String Address = address.getText().toString();
+
                 Vendor v = new Vendor(Vendor_name,Tel,Integer.parseInt(Vendor_id),Email,Address);
                 System.out.println(htc.doGet("http://10.0.2.2:8339/updateVendor?vendorName=" + v.getVendor_name() +"&telephoneNumber="+v.getTel()+ "&vendorId=" + v.getVendor_id() + "&email="+v.getEmail()+"&address="+v.getAddress()));
                 tel.setText(Tel);
                 vendor_name.setText(Vendor_name);
                 email.setText(Email);
                 address.setText(Address);
-            }).start();
+            }).start();}else {
+                Toast.makeText(getActivity(), "Your should fill all the information.", Toast.LENGTH_LONG).show();
+            }
 
         });
     }

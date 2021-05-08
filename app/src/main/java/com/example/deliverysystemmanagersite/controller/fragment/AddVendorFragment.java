@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.deliverysystemmanagersite.R;
 import com.example.deliverysystemmanagersite.util.HttpConnectionUtil;
@@ -55,12 +56,15 @@ public class AddVendorFragment extends Fragment {
             String email = et_email.getText().toString();
             String tel = et_phone.getText().toString();
             String address = et_address.getText().toString();
+            if(!tel.equals("")&&!venderName.equals("")&&!email.equals("")&&!address.equals("")) {
             new Thread(() -> {
 
                 HttpConnectionUtil htc = new HttpConnectionUtil();
                 System.out.println(htc.doGet("http://10.0.2.2:8339/createVendor?vendorName=" + venderName + "&email=" + email + "&telephoneNumber=" + tel + "&address=" + address));
 
-            }).start();
+            }).start();}else {
+                Toast.makeText(getActivity(), "Your should fill all the information.", Toast.LENGTH_LONG).show();
+            }
         });
     }
 }
