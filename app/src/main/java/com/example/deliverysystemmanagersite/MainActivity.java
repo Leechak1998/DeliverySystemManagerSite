@@ -14,6 +14,8 @@ import android.widget.EditText;
 import com.example.deliverysystemmanagersite.controller.fragment.LoginFragment;
 import com.example.deliverysystemmanagersite.controller.fragment.RegisterFragment;
 import com.example.deliverysystemmanagersite.db.myDatabase;
+import com.example.deliverysystemmanagersite.util.ActivityCollectorUtil;
+import com.example.deliverysystemmanagersite.util.globalUtil;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,12 +24,15 @@ public class MainActivity extends AppCompatActivity {
     private LoginFragment LoginFra;
     private RegisterFragment RegisFra;
     public static myDatabase mdb;
+    private globalUtil g;
+    private ActivityCollectorUtil collectorUtil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         init();
+        collectorUtil.addActivity(g.getCurrentActivity());
     }
 
     public void init(){
@@ -81,4 +86,9 @@ public class MainActivity extends AppCompatActivity {
 //点击空白处软键盘自动收回
 
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        collectorUtil.removeActivity(g.getCurrentActivity());
+    }
 }

@@ -17,6 +17,7 @@ import com.example.deliverysystemmanagersite.R;
 import com.example.deliverysystemmanagersite.controller.activity.HomeActivity;
 import com.example.deliverysystemmanagersite.driver.driver.DriverPageFragment;
 import com.example.deliverysystemmanagersite.db.AppDatabase;
+import com.example.deliverysystemmanagersite.util.HttpConnectionUtil;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -83,6 +84,7 @@ public class LoginFragment extends Fragment {
         });
 
         btnLogin.setOnClickListener(view -> {
+            Intent intent = new Intent(getActivity(), HomeActivity.class);
             if (rBtnManager.isChecked()){
                 new Thread(() -> {
                     Message msg;
@@ -90,7 +92,6 @@ public class LoginFragment extends Fragment {
                         msg = new Message();
                         msg.what = SUCCESS;
                         handler.sendMessage(msg);
-                        Intent intent = new Intent(getActivity(), HomeActivity.class);
                         startActivity(intent);
                     } else {
                         msg = new Message();
@@ -100,8 +101,24 @@ public class LoginFragment extends Fragment {
 
                 }).start();
             } else {
-                Intent intent = new Intent(getActivity(), DriverPageFragment.class);
-                startActivity(intent);
+                new Thread(()->{
+                    HttpConnectionUtil htc = new HttpConnectionUtil();
+                    String userName = etUsername.getText().toString();
+                    String pwd = etPassword.getText().toString();
+                    String s = htc.doGet("http://10.0.2.2:8339/createPackage?userName=" + userName + "&passWord=" + pwd);
+                    String toast;
+                    switch (s){
+                        case "0":
+                            Toast.makeText(getActivity(), "Username not exist.", Toast.LENGTH_LONG).show();
+                        case "1":
+                            Toast.makeText(getActivity(), "Incorrect password", Toast.LENGTH_LONG).show();
+                        case "2":
+                            Toast.makeText(getActivity(), "Success", Toast.LENGTH_LONG).show();
+                            startActivity(intent);
+                    }
+
+
+                }).start();
             }
             //Validate username and password
 

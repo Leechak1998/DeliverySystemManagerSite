@@ -19,6 +19,8 @@ import com.example.deliverysystemmanagersite.controller.fragment.PackageFragment
 import com.example.deliverysystemmanagersite.controller.fragment.RegisterFragment;
 import com.example.deliverysystemmanagersite.controller.fragment.SiteFragment;
 import com.example.deliverysystemmanagersite.controller.fragment.VendorFragment;
+import com.example.deliverysystemmanagersite.util.ActivityCollectorUtil;
+import com.example.deliverysystemmanagersite.util.globalUtil;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.annotation.NonNull;
@@ -32,19 +34,17 @@ import androidx.navigation.ui.NavigationUI;
 
 public class HomeActivity extends AppCompatActivity {
     private NavController navController;
+    private globalUtil g;
+    private ActivityCollectorUtil collectorUtil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        BottomNavigationView navView = findViewById(R.id.nav_view);
-//        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-//                R.id.navigation_workList, R.id.navigation_add, R.id.navigation_mine, R.id.PackDetailFra, R.id.VendorDetailFra, R.id.DriverDetailFra, R.id.SiteDetailFra)
-//                .build();
-        //navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+        collectorUtil.addActivity(g.getCurrentActivity());
 
+        BottomNavigationView navView = findViewById(R.id.nav_view);
 
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupWithNavController(navView, navController);
@@ -87,4 +87,10 @@ public class HomeActivity extends AppCompatActivity {
         return controller.navigateUp();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        collectorUtil.removeActivity(g.getCurrentActivity());
+    }
 }
