@@ -51,6 +51,8 @@ public class AddPackagesFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Add new package");
+
+        addPackagesModel = new AddPackagesModel();
     }
 
     @Override
@@ -68,8 +70,6 @@ public class AddPackagesFragment extends Fragment {
         spinnerDriver = (Spinner) root.findViewById(R.id.spinnerDriver);
         btnSub = (Button) root.findViewById(R.id.btnSub);
         btnCan = (Button) root.findViewById(R.id.btnCan);
-
-        addPackagesModel = new AddPackagesModel();
         commentAdapter = new CommentAdapter();
 
         list_departure = (List<Vendor>) addPackagesModel.init_list(ADD_FROM);

@@ -1,7 +1,12 @@
 package com.example.deliverysystemmanagersite.model;
 
-import com.example.deliverysystemmanagersite.util.HttpConnectionUtil;
+import android.os.Bundle;
+import android.os.Message;
 
+import com.example.deliverysystemmanagersite.util.HttpConnectionUtil;
+import com.example.deliverysystemmanagersite.util.SerializableList;
+
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -21,22 +26,24 @@ public class AddPackagesModel {
     final private static int ADD_DRIVER = 2;
 
     public AddPackagesModel(){
-        //requestData
 
-        Vendor v1 = new Vendor("Vendor1", "123", 0, "123@qq", "Hampton");
-        Site s1 = new Site("Site1", "321", 0, "321@qq", "Crossings");
-        Driver d1 = new Driver("jackson", "12333", 0 , "jack@qq");
 
-        Vendor v2 = new Vendor("Vendor2", "123", 0, "123@qq", "Hampton");
-        Site s2 = new Site("Site2", "321", 0, "321@qq", "Crossings");
-        Driver d2 = new Driver("jackson2", "12333", 0 , "jack@qq");
+//        Vendor v1 = new Vendor("Vendor1", "123", 0, "123@qq", "Hampton");
+//        Site s1 = new Site("Site1", "321", 0, "321@qq", "Crossings");
+//        Driver d1 = new Driver("jackson", "12333", 0 , "jack@qq");
+//
+//        Vendor v2 = new Vendor("Vendor2", "123", 0, "123@qq", "Hampton");
+//        Site s2 = new Site("Site2", "321", 0, "321@qq", "Crossings");
+//        Driver d2 = new Driver("jackson2", "12333", 0 , "jack@qq");
+        requestData();
+        System.out.println("之后");
+//        list_departure.add(v1);
+//        list_site.add(s1);
+//        list_driver.add(d1);
+//        list_departure.add(v2);
+//        list_site.add(s2);
+//        list_driver.add(d2);
 
-        list_departure.add(v1);
-        list_site.add(s1);
-        list_driver.add(d1);
-        list_departure.add(v2);
-        list_site.add(s2);
-        list_driver.add(d2);
 
     }
 
@@ -58,28 +65,47 @@ public class AddPackagesModel {
 
     //获取所有Departure，destination，driver的信息。
     public void requestData(){
-        HttpConnectionUtil htc = new HttpConnectionUtil();
-        String departure_data = htc.doGet("http://10.0.2.2:8339/....");
-        String destination_data = htc.doGet("http://10.0.2.2:8339/....");
-        String driver_data = htc.doGet("http://10.0.2.2:8339/....");
 
-        try {
-            JSONObject jsonObject_departure = new JSONObject(departure_data);
-            JSONObject jsonObject_destination = new JSONObject(destination_data);
-            JSONObject jsonObject_driver = new JSONObject(driver_data);
+        new Thread(()->{
+            HttpConnectionUtil htc = new HttpConnectionUtil();
+            String vendorList = htc.doGet("http://10.0.2.2:8339/selectVendorAll");
+            String siteList = htc.doGet("http://10.0.2.2:8339/selectSiteAll");
+            String driverList = htc.doGet("http://10.0.2.2:8339/selectDriverAll");
+            try{
+                JSONArray driverListData = new JSONArray(driverList);
+                JSONArray siteListData = new JSONArray(siteList);
+                JSONArray vendorListData = new JSONArray(vendorList);
+                for (int i=0; i<driverListData.length(); i++){
+                    int driverId = driverListData.getJSONObject(i).getInt("driverId");
+                    String driverName = driverListData.getJSONObject(i).getString("driverName");
+                    String email = driverListData.getJSONObject(i).getString("email");
+                    String tel = driverListData.getJSONObject(i).getString("telephoneNumber");
+                    list_driver.add(new Driver(driverName,tel,driverId,email));
+                }
+                for (int i=0; i<siteListData.length(); i++){
+                    int siteId = siteListData.getJSONObject(i).getInt("siteId");
+                    String siteName = siteListData.getJSONObject(i).getString("siteName");
+                    String email = siteListData.getJSONObject(i).getString("email");
+                    String tel = siteListData.getJSONObject(i).getString("telephoneNumber");
+                    String address = siteListData.getJSONObject(i).getString("address");
+                    list_site.add(new Site(siteName,tel,siteId,email,address));
+                }
+                for (int i=0; i<vendorListData.length(); i++){
+                    int vendorId = vendorListData.getJSONObject(i).getInt("vendorId");
+                    String vendorName = vendorListData.getJSONObject(i).getString("vendorName");
+                    String email = vendorListData.getJSONObject(i).getString("email");
+                    String tel = vendorListData.getJSONObject(i).getString("telephoneNumber");
+                    String address = vendorListData.getJSONObject(i).getString("address");
+                    list_departure.add(new Vendor(vendorName,tel,vendorId,email,address));
+                }
+                System.out.println("site:"+list_site.size());
+                System.out.println("vendor:"+list_departure.size());
+                System.out.println("driver:"+list_driver.size());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }).start();
 
-            //JSONArray drivers = jsonObject_driver.getJSONArray("drivers");
-            //for (int i=0; i<drivers.length(); i++){
-            //  listFrom.add(drivers.getJSONObject(i).getString("usernmae"));
-            // }
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-//        list_departure.add(v1);
-//        list_site.add(s1);
-//        list_driver.add(d1);
     }
 
     //vendor_id state send_data received_data departure destination
@@ -91,9 +117,11 @@ public class AddPackagesModel {
         String destination = site.getAddress();
 
 //        System.out.println("driverID=" + driverID + "  vendorName=" + vendorName + "  departure=" + departure + "  destination=" + destination);
+        new Thread(()->{
+            HttpConnectionUtil htc = new HttpConnectionUtil();
+            System.out.println(htc.doGet("http://10.0.2.2:8339/createPackage?driverId=" + driverID + "&vendorName=" + vendorName + "&departure=" + departure + "&destination=" + destination));
+        }).start();
 
-        HttpConnectionUtil htc = new HttpConnectionUtil();
-        System.out.println(htc.doGet("http://10.0.2.2:8339/createPackage?driverId=" + driverID + "&vendorName=" + vendorName + "&departure=" + departure + "&destination=" + destination));
     }
 
 }
