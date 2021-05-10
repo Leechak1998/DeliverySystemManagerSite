@@ -16,6 +16,7 @@
     <string name="title_workList">WorkList</string>
     <string name="title_add">Add</string>
     <string name="title_Mine">Mine</string>
+    <string name="title_Modify_password">Modify password</string>
 
     <string name="title_activity_tab">tabActivity</string>
     <string name="tab_text_1">Package</string>

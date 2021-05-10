@@ -16,6 +16,7 @@ import com.example.deliverysystemmanagersite.db.myDatabase;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
+    public static int UserID;
     private LoginFragment LoginFra;
     private RegisterFragment RegisFra;
     public static myDatabase mdb;

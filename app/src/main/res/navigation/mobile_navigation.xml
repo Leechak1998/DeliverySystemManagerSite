@@ -16,25 +16,23 @@
         android:name="com.example.deliverysystemmanagersite.controller.fragment.AddFragment"
         android:label="@string/title_add"
         tools:layout="@layout/fragment_add" >
-<!--        <action-->
-<!--            android:id="@+id/action_navigation_add_to_navigation_packDetail"-->
-<!--            app:destination="@id/navigation_packDetail" />-->
-<!--        <action-->
-<!--            android:id="@+id/action_navigation_add_to_navigation_DriverDetail"-->
-<!--            app:destination="@id/navigation_DriverDetail" />-->
-<!--        <action-->
-<!--            android:id="@+id/action_navigation_add_to_navigation_VendorDetail2"-->
-<!--            app:destination="@id/navigation_VendorDetail" />-->
-<!--        <action-->
-<!--            android:id="@+id/action_navigation_add_to_navigation_SiteDetail"-->
-<!--            app:destination="@id/navigation_SiteDetail" />-->
     </fragment>
 
     <fragment
         android:id="@+id/navigation_mine"
         android:name="com.example.deliverysystemmanagersite.controller.fragment.MineFragment"
         android:label="@string/title_Mine"
-        tools:layout="@layout/fragment_mine" />
+        tools:layout="@layout/fragment_mine" >
+        <action
+            android:id="@+id/action_navigation_mine_to_navigation_mine_modify"
+            app:destination="@id/navigation_mine_modify" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_mine_modify"
+        android:name="com.example.deliverysystemmanagersite.controller.fragment.ModifyPasswordFragment"
+        android:label="@string/title_Mine"
+        tools:layout="@layout/fragment_modify_password" />
 
     <fragment
         android:id="@+id/navigation_packDetail"
