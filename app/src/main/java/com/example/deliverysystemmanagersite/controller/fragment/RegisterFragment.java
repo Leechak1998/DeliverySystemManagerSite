@@ -126,7 +126,9 @@ public class RegisterFragment extends Fragment {
         new Thread(() -> {
             //db = MainActivity.mdb.getDb();
             User user = new User();
-            user.setUid(setUserUid());
+            int id = setUserUid();
+            MainActivity.UserID = id;
+            user.setUid(id);
             user.setUserName(etUsername.getText().toString());
             user.setPassword(etPassword.getText().toString());
             user.setEmail(etEmail.getText().toString());

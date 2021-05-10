@@ -53,10 +53,10 @@
             android:background="#FF909090"/>
 
         <Button
+            android:id="@+id/btnModifyPassword"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="3"
-            android:id="@+id/btnModifyPassword"
             android:background="@drawable/btn_background"
             android:text="Modify Password"
             android:textSize="20dp"

@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     public static myDatabase mdb;
     private globalUtil g;
     private ActivityCollectorUtil collectorUtil;
+    public static int UserID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
