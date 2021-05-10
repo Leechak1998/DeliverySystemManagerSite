@@ -41,7 +41,6 @@ public class PackageDetailsFragment extends Fragment {
     private TextView departure;
     private TextView destination;
     private TextView driver;
-    private TextView tel;
     private TextView vendor;
     private TextView delivery_date;
     private TextView state;
@@ -66,7 +65,6 @@ public class PackageDetailsFragment extends Fragment {
             departure.setText(packageViewModel.getSelectedPackage().getValue().getDeparture());
             destination.setText(packageViewModel.getSelectedPackage().getValue().getDestination());
             driver.setText(packageViewModel.getSelectedPackage().getValue().getDriver());
-            tel.setText(packageViewModel.getSelectedPackage().getValue().getTel());
             packageId.setText(packageViewModel.getSelectedPackage().getValue().getPackageId()+"");
             vendor.setText(packageViewModel.getSelectedPackage().getValue().getVendor());
             delivery_date.setText(packageViewModel.getSelectedPackage().getValue().getDate());
@@ -81,7 +79,6 @@ public class PackageDetailsFragment extends Fragment {
         departure = (TextView) root.findViewById(R.id.departure);
         destination = (TextView) root.findViewById(R.id.destination);
         driver = (TextView) root.findViewById(R.id.driver);
-        tel = (TextView) root.findViewById(R.id.driver_tel);
         vendor = (TextView) root.findViewById(R.id.vendor);
         delivery_date = (TextView) root.findViewById(R.id.deliver_date);
         state = (TextView) root.findViewById(R.id.status);

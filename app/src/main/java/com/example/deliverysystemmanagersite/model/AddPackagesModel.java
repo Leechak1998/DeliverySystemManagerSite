@@ -98,9 +98,9 @@ public class AddPackagesModel {
                     String address = vendorListData.getJSONObject(i).getString("address");
                     list_departure.add(new Vendor(vendorName,tel,vendorId,email,address));
                 }
-                System.out.println("site:"+list_site.size());
-                System.out.println("vendor:"+list_departure.size());
-                System.out.println("driver:"+list_driver.size());
+//                System.out.println("site:"+list_site.size());
+//                System.out.println("vendor:"+list_departure.size());
+//                System.out.println("driver:"+list_driver.size());
             } catch (JSONException e) {
                 e.printStackTrace();
             }
