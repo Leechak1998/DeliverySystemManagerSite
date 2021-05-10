@@ -1,49 +1,28 @@
 package com.example.deliverysystemmanagersite.controller.activity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 import com.example.deliverysystemmanagersite.R;
-import com.example.deliverysystemmanagersite.controller.fragment.DriverFragment;
-import com.example.deliverysystemmanagersite.controller.fragment.PackageDetailsFragment;
-import com.example.deliverysystemmanagersite.controller.fragment.PackageFragment;
-import com.example.deliverysystemmanagersite.controller.fragment.RegisterFragment;
-import com.example.deliverysystemmanagersite.controller.fragment.SiteFragment;
-import com.example.deliverysystemmanagersite.controller.fragment.VendorFragment;
-import com.example.deliverysystemmanagersite.util.ActivityCollectorUtil;
-import com.example.deliverysystemmanagersite.util.globalUtil;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 public class HomeActivity extends AppCompatActivity {
     private NavController navController;
-    private globalUtil g;
-    private ActivityCollectorUtil collectorUtil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
-        collectorUtil.addActivity(g.getCurrentActivity());
-        System.out.println("现有activity："+collectorUtil.mActivityList);
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
 
@@ -86,14 +65,5 @@ public class HomeActivity extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         NavController controller = Navigation.findNavController(this,R.id.nav_host_fragment);
         return controller.navigateUp();
-    }
-
-    @Override
-    protected void onDestroy() {
-        collectorUtil.removeActivity(g.getCurrentActivity());
-        System.out.println("现有activity："+collectorUtil.mActivityList);
-        super.onDestroy();
-
-
     }
 }

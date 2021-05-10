@@ -15,8 +15,9 @@
         <activity
             android:name=".controller.activity.HomeActivity"
             android:label="@string/title_activity_home"
-            android:windowSoftInputMode="adjustPan"></activity>
-        <activity android:name=".MainActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".MainActivity"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,7 +25,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".driver.driver.DriverPageFragment"/>
+        <activity android:name=".driver.driver.DriverPageFragment" />
     </application>
 
 </manifest>

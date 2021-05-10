@@ -1,6 +1,5 @@
 package com.example.deliverysystemmanagersite.controller.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,17 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 
-import com.example.deliverysystemmanagersite.MainActivity;
 import com.example.deliverysystemmanagersite.R;
-import com.example.deliverysystemmanagersite.util.ActivityCollectorUtil;
 
 public class MineFragment extends Fragment {
 
     private Button btnOut,btnModifyPassword,btnMoreInfo,btnAboutUs;
     private View root;
-    private ActivityCollectorUtil collectorUtil;
 
 
 
@@ -30,8 +25,6 @@ public class MineFragment extends Fragment {
     public static MineFragment newInstance(String param1, String param2) {
         MineFragment fragment = new MineFragment();
         Bundle args = new Bundle();
-//        args.putString(ARG_PARAM1, param1);
-//        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -55,11 +48,6 @@ public class MineFragment extends Fragment {
         return root;
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-    }
-
     public void Init(){
         btnOut = (Button) root.findViewById(R.id.btnOut);
         btnModifyPassword = (Button) root.findViewById(R.id.btnModifyPassword);
@@ -69,8 +57,6 @@ public class MineFragment extends Fragment {
 
     private void btnListener(){
         btnOut.setOnClickListener(view->{
-            System.out.println("logout");
-//            collectorUtil.finishAllActivity();
             System.exit(0);
         });
         btnMoreInfo.setOnClickListener(v -> {

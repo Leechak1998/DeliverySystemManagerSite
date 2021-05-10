@@ -28,9 +28,6 @@ public class DriverWorkListFragment extends Fragment {
     private View root;
 
     private ListView listView;
-    private ImageButton btnSearch;
-    private ImageButton btnFilter;
-    private EditText etSearchBar;
 
     private DriverWorkListFragment fra;
     private DriverWorkListViewModel viewModel;
@@ -54,9 +51,6 @@ public class DriverWorkListFragment extends Fragment {
     public void init(){
         fra = this;
         listView = (ListView) root.findViewById(R.id.lv);
-        btnSearch = (ImageButton) root.findViewById(R.id.imgBtnSearch);
-        btnFilter = (ImageButton) root.findViewById(R.id.imgBtnFilter);
-        etSearchBar = (EditText) root.findViewById(R.id.etSearch);
 
         viewModel = new DriverWorkListViewModel();
         pList = new ArrayList<>();

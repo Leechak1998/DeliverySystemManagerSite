@@ -4,8 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 
 import android.os.IBinder;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -14,26 +12,19 @@ import android.widget.EditText;
 import com.example.deliverysystemmanagersite.controller.fragment.LoginFragment;
 import com.example.deliverysystemmanagersite.controller.fragment.RegisterFragment;
 import com.example.deliverysystemmanagersite.db.myDatabase;
-import com.example.deliverysystemmanagersite.util.ActivityCollectorUtil;
-import com.example.deliverysystemmanagersite.util.globalUtil;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
     private LoginFragment LoginFra;
     private RegisterFragment RegisFra;
     public static myDatabase mdb;
-    private globalUtil g;
-    private ActivityCollectorUtil collectorUtil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         init();
-        collectorUtil.addActivity(g.getCurrentActivity());
-        System.out.println("当前activity："+g.getCurrentActivity());
 
     }
 
@@ -90,7 +81,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        collectorUtil.removeActivity(g.getCurrentActivity());
         super.onDestroy();
     }
 }

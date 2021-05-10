@@ -7,50 +7,13 @@
     android:layout_height="match_parent"
     tools:context=".driver.driver.DriverWorkListFragment">
 
-    <LinearLayout
-        android:id="@+id/lyNav"
+
+
+
+    <ListView
+        android:id="@+id/lv"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:orientation="horizontal"
-        android:padding="5dp">
+        android:layout_height="match_parent"/>
 
-        <EditText
-            android:id="@+id/etSearch"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="6"
-            android:background="@drawable/edittext_background"
-            android:inputType="text"
-            android:hint="  Search for..." />
-
-        <ImageButton
-            android:id="@+id/imgBtnSearch"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:background="@color/white"
-            android:src="@drawable/ic_search_black" />
-
-        <ImageButton
-            android:id="@+id/imgBtnFilter"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:background="@color/white"
-            android:src="@drawable/ic_filter_black" />
-    </LinearLayout>
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/lyNav"
-        android:fillViewport="true">
-
-        <ListView
-            android:id="@+id/lv"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-
-    </ScrollView>
 
 </RelativeLayout>

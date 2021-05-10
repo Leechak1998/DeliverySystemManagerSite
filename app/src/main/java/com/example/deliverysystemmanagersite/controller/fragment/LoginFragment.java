@@ -39,8 +39,8 @@ public class LoginFragment extends Fragment {
     private static final int FAILURE = 0;
 
     private static final int NO_USER = 0;
-    private static final int INCORRECT_PASSWORD = 0;
-    private static final int LOGIN_SUCCESS = 0;
+    private static final int INCORRECT_PASSWORD = 1;
+    private static final int LOGIN_SUCCESS = 2;
 
     private Handler handler = new Handler(){
         @Override
@@ -57,11 +57,11 @@ public class LoginFragment extends Fragment {
         @Override
         public void handleMessage(@NonNull Message msg) {
             if(msg.what == NO_USER){
-                Toast.makeText(getActivity(), "Username not exist." , Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "User not exist." , Toast.LENGTH_LONG).show();
             }else if(msg.what == INCORRECT_PASSWORD){
                 Toast.makeText(getActivity(), "Incorrect password." , Toast.LENGTH_LONG).show();
             }else if(msg.what == LOGIN_SUCCESS){
-                Toast.makeText(getActivity(), "Success" , Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "Success." , Toast.LENGTH_LONG).show();
             }
         }
     };
@@ -79,6 +79,13 @@ public class LoginFragment extends Fragment {
         init();
         btnListener();
         return root;
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        etUsername.setText("");
+        etPassword.setText("");
     }
 
     public void init(){
@@ -100,7 +107,6 @@ public class LoginFragment extends Fragment {
         });
 
         btnLogin.setOnClickListener(view -> {
-            Intent intent = new Intent(getActivity(), HomeActivity.class);
             if (rBtnManager.isChecked()){
                 new Thread(() -> {
                     Message msg;
@@ -108,6 +114,7 @@ public class LoginFragment extends Fragment {
                     if ("Success".equals(checkUser(etUsername.getText().toString(), etPassword.getText().toString()))){
                         msg = new Message();
                         msg.what = SUCCESS;
+                        Intent intent = new Intent(getActivity(), HomeActivity.class);
                         startActivity(intent);
                     } else {
                         msg = new Message();
@@ -120,15 +127,16 @@ public class LoginFragment extends Fragment {
                     HttpConnectionUtil htc = new HttpConnectionUtil();
                     String userName = etUsername.getText().toString();
                     String pwd = etPassword.getText().toString();
-                    String s = htc.doGet("http://10.0.2.2:8339/loginDriver?driverName=" + userName + "&passWord=" + pwd);
+                    String s = htc.doGet("http://10.0.2.2:8339/loginDriver?email=" + userName + "&password=" + pwd);
                     Message m = new Message();
-
-                    if(s == "0"){
+                    System.out.println(s);
+                    if(s.equals("0")){
                         m.what = NO_USER;
-                    }else if(s == "1"){
+                    }else if(s.equals("1")){
                         m.what = INCORRECT_PASSWORD;
-                    }else if(s == "2") {
+                    }else{
                         m.what = LOGIN_SUCCESS;
+                        Intent intent = new Intent(getActivity(), DriverPageFragment.class);
                         startActivity(intent);
                     }
                     handlerDriver.sendMessage(m);
@@ -144,9 +152,9 @@ public class LoginFragment extends Fragment {
 
     }
 
-    public OnButtonClick getOnButtonClick() {
-        return onButtonClick;
-    }
+//    public OnButtonClick getOnButtonClick() {
+//        return onButtonClick;
+//    }
 
     public void setOnButtonClick(OnButtonClick onButtonClick) {
         this.onButtonClick = onButtonClick;
