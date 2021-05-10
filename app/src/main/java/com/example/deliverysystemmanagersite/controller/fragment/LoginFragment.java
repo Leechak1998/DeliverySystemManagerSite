@@ -76,11 +76,11 @@ public class LoginFragment extends Fragment {
     public void btnListener(){
 
         rBtnDriver.setOnClickListener(view -> {
-            rBtnManager.setChecked(false);
+//            rBtnManager.setChecked(false);
         });
 
         rBtnManager.setOnClickListener(view -> {
-            rBtnDriver.setChecked(false);
+//            rBtnDriver.setChecked(false);
         });
 
         btnRegister.setOnClickListener(view -> {
@@ -98,6 +98,7 @@ public class LoginFragment extends Fragment {
                         msg = new Message();
                         msg.what = SUCCESS;
                         handler.sendMessage(msg);
+
                         startActivity(intent);
                     } else {
                         msg = new Message();
@@ -106,7 +107,7 @@ public class LoginFragment extends Fragment {
                     }
 
                 }).start();
-            } else {
+            } else if(rBtnDriver.isChecked()) {
                 new Thread(()->{
                     HttpConnectionUtil htc = new HttpConnectionUtil();
                     String userName = etUsername.getText().toString();
@@ -125,6 +126,8 @@ public class LoginFragment extends Fragment {
 
 
                 }).start();
+            } else{
+                Toast.makeText(getActivity(), "Please select a role to login.", Toast.LENGTH_LONG).show();
             }
             //Validate username and password
 
