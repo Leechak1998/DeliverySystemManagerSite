@@ -42,7 +42,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:ellipsize="end"
-                android:enabled="false"
                 android:gravity="center"
                 android:paddingTop="@dimen/padding_value"
                 android:paddingBottom="@dimen/padding_value"
@@ -82,7 +81,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:ellipsize="end"
-                android:enabled="false"
                 android:gravity="center"
                 android:paddingTop="@dimen/padding_value"
                 android:paddingRight="@dimen/padding_value"
@@ -103,7 +101,7 @@
                 android:id="@+id/textView14"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1.4"
+                android:layout_weight="1"
                 android:paddingLeft="@dimen/padding_value"
                 android:paddingTop="@dimen/padding_value"
                 android:paddingBottom="@dimen/padding_value"
@@ -116,36 +114,10 @@
                 android:id="@+id/driver"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:enabled="false"
+                android:layout_weight="4"
                 android:paddingTop="@dimen/padding_value"
                 android:paddingBottom="@dimen/padding_value"
                 android:text="123"
-                android:textAlignment="textStart"
-                android:textSize="@dimen/package_detail_font_size" />
-
-            <TextView
-                android:id="@+id/textView12"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:paddingTop="@dimen/padding_value"
-                android:paddingBottom="@dimen/padding_value"
-                android:text="Tel:"
-                android:textAlignment="center"
-                android:textSize="@dimen/package_detail_font_size"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/driver_tel"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:enabled="false"
-                android:paddingTop="@dimen/padding_value"
-                android:paddingRight="@dimen/padding_value"
-                android:paddingBottom="@dimen/padding_value"
-                android:text="123412312312"
                 android:textAlignment="textStart"
                 android:textSize="@dimen/package_detail_font_size" />
         </LinearLayout>
@@ -205,8 +177,6 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
-                android:enabled="false"
-
                 android:paddingTop="@dimen/padding_value"
                 android:paddingBottom="@dimen/padding_value"
                 android:text="123312312313"
@@ -241,8 +211,6 @@
                 android:layout_weight="2"
                 android:clickable="true"
                 android:ems="10"
-                android:enabled="false"
-                android:focusable="false"
                 android:inputType="date"
                 android:paddingTop="@dimen/padding_value"
                 android:paddingBottom="@dimen/padding_value"
@@ -280,7 +248,15 @@
                 android:padding="@dimen/padding_value"
                 android:textAlignment="textStart"
                 android:textSize="@dimen/package_detail_font_size" />
+
         </LinearLayout>
+        <ImageButton
+            android:id="@+id/Package_edit"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/edit_btn_selector"
+            android:layout_marginTop="40dp"
+            android:src="@android:drawable/ic_menu_edit" />
 
     </LinearLayout>
 </RelativeLayout>

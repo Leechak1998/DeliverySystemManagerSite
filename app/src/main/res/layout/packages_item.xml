@@ -177,7 +177,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <TextView
@@ -187,18 +187,36 @@
                 android:layout_toRightOf="@id/tvId"
                 android:layout_weight="1"
                 android:padding="@dimen/padding_value"
-                android:text="Status: "
+                android:text="Driver Id: "
                 android:textAlignment="textStart"
                 android:textSize="15dp"
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/Package_Driver_Id"
                 android:layout_width="0dp"
-                android:id="@+id/Package_Status"
                 android:layout_height="wrap_content"
-                android:layout_weight="4"
+                android:layout_weight="3"
+                android:padding="@dimen/padding_value" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Status:"
                 android:padding="@dimen/padding_value"
-                android:text="Jack" />
+                android:textAlignment="textStart"
+                android:textSize="15dp"
+                android:textStyle="bold"></TextView>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4.5"
+                android:id="@+id/Package_Status"
+                android:padding="@dimen/padding_value" />
         </LinearLayout>
 
     </LinearLayout>

@@ -28,14 +28,16 @@ public class DriverWorkListAdapter extends ArrayAdapter<Packages> {
         View view = LayoutInflater.from(getContext()).inflate(resourceId,parent,false);
 
         TextView OrderNum = (TextView) view.findViewById(R.id.Id);
-        TextView Driver = (TextView) view.findViewById(R.id.Package_Status);
+        TextView Driver = (TextView) view.findViewById(R.id.Package_Driver_Id);
         TextView Vendor = (TextView) view.findViewById(R.id.Departure);
         TextView Destination = (TextView) view.findViewById(R.id.Destination);
+        TextView Status = (TextView) view.findViewById(R.id.Package_Status);
 
         OrderNum.setText(packages.getPackageId()+"");
         Driver.setText(packages.getDriver());
         Vendor.setText(packages.getDeparture());
         Destination.setText(packages.getDestination());
+        Status.setText(packages.getStringState(packages.getState()));
 
         return view;
     }

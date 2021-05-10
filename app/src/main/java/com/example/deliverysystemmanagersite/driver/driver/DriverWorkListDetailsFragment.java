@@ -50,7 +50,7 @@ public class DriverWorkListDetailsFragment extends Fragment {
             et_id.setText(viewModel.getSelectedPackage().getValue().getPackageId()+"");
             et_vendor.setText(viewModel.getSelectedPackage().getValue().getVendor());
             et_date.setText(viewModel.getSelectedPackage().getValue().getDate());
-            et_status.setText(viewModel.getSelectedPackage().getValue().getState());
+            et_status.setText(viewModel.getSelectedPackage().getValue().getStringState(viewModel.getSelectedPackage().getValue().getState()));
         });
 
         return root;

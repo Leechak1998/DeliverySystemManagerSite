@@ -8,16 +8,11 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.example.deliverysystemmanagersite.R;
-import com.example.deliverysystemmanagersite.model.Driver;
 import com.example.deliverysystemmanagersite.model.Packages;
-import com.example.deliverysystemmanagersite.model.Site;
-import com.example.deliverysystemmanagersite.model.Vendor;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
 public class PackageAdapter extends ArrayAdapter<Packages>{
     private int resourceId;
@@ -36,11 +31,13 @@ public class PackageAdapter extends ArrayAdapter<Packages>{
         TextView Status = (TextView) view.findViewById(R.id.Package_Status);
         TextView Vendor = (TextView) view.findViewById(R.id.Departure);
         TextView Destination = (TextView) view.findViewById(R.id.Destination);
+        TextView DriverId = (TextView) view.findViewById(R.id.Package_Driver_Id);
 
         OrderNum.setText(packages.getPackageId()+"");
         Status.setText(packages.getStringState(packages.getState()));
         Vendor.setText(packages.getDeparture());
         Destination.setText(packages.getDestination());
+        DriverId.setText(packages.getDriver());
 
         return view;
     }
