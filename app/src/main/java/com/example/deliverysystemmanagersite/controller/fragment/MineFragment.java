@@ -70,7 +70,8 @@ public class MineFragment extends Fragment {
     private void btnListener(){
         btnOut.setOnClickListener(view->{
             System.out.println("logout");
-            collectorUtil.finishAllActivity();
+//            collectorUtil.finishAllActivity();
+            System.exit(0);
         });
         btnMoreInfo.setOnClickListener(v -> {
 

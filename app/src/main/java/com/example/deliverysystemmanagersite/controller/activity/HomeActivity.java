@@ -43,6 +43,7 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         collectorUtil.addActivity(g.getCurrentActivity());
+        System.out.println("现有activity："+collectorUtil.mActivityList);
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
 
@@ -89,8 +90,10 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
+        collectorUtil.removeActivity(g.getCurrentActivity());
+        System.out.println("现有activity："+collectorUtil.mActivityList);
         super.onDestroy();
 
-        collectorUtil.removeActivity(g.getCurrentActivity());
+
     }
 }

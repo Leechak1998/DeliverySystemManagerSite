@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         init();
         collectorUtil.addActivity(g.getCurrentActivity());
+        System.out.println("当前activity："+g.getCurrentActivity());
+
     }
 
     public void init(){
@@ -88,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         collectorUtil.removeActivity(g.getCurrentActivity());
+        super.onDestroy();
     }
 }
