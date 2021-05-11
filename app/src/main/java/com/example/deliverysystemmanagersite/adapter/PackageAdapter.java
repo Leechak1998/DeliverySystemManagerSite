@@ -40,13 +40,10 @@ public class PackageAdapter extends ArrayAdapter<Packages>{
         Status.setText(state);
         if (state.equals("pending")){
             Status.setTextColor(Color.RED);
-            System.out.println("-------red--------");
         } else if (state.equals("delivered")){
             Status.setTextColor(Color.GREEN);
-            System.out.println("-------green--------");
         } else {
             Status.setTextColor(Color.YELLOW);
-            System.out.println("-------yellow--------");
         }
         Vendor.setText(packages.getDeparture());
         Destination.setText(packages.getDestination());

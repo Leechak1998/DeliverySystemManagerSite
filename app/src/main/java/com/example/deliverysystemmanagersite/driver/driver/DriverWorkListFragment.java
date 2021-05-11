@@ -42,9 +42,7 @@ public class DriverWorkListFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        System.out.println("初始化view model");
         viewModel = new DriverWorkListViewModel();
-//        viewModel = new ViewModelProvider(requireActivity()).get(DriverWorkListViewModel.class);
     }
 
     @Override

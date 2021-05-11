@@ -1,6 +1,7 @@
 package com.example.deliverysystemmanagersite.adapter.driverAdpter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,11 +35,20 @@ public class DriverWorkListAdapter extends ArrayAdapter<Packages> {
         TextView Status = (TextView) view.findViewById(R.id.Package_Status);
 
         OrderNum.setText(packages.getPackageId()+"");
+
         Driver.setText(packages.getDriver());
         Vendor.setText(packages.getDeparture());
         Destination.setText(packages.getDestination());
-        Status.setText(packages.getStringState(packages.getState()));
 
+        String state = packages.getStringState(packages.getState());
+        Status.setText(state);
+        if (state.equals("pending")){
+            Status.setTextColor(Color.RED);
+        } else if (state.equals("delivered")){
+            Status.setTextColor(Color.GREEN);
+        } else {
+            Status.setTextColor(Color.YELLOW);
+        }
         return view;
     }
 }

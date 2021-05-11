@@ -21,10 +21,6 @@ public class DriverPageActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_driver);
         NavigationUI.setupActionBarWithNavController(this, navController);
         NavigationUI.setupWithNavController(navView, navController);
-        /*
-        *  Navigation.findNavController(root);
-            NavHostFragment.findNavController(fra).navigate(R.id.navigation_DriverDetail);
-        * */
 
     }
 

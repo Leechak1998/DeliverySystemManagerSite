@@ -55,14 +55,10 @@ public class DriverWorkListViewModel extends ViewModel {
 
     public void init() {
         Thread thread = new Thread(() -> {
-            System.out.println("优先启动了吗");
-
             HttpConnectionUtil htc = new HttpConnectionUtil();
             int id = Integer.parseInt( htc.doGet("http://10.0.2.2:8339/retrieveDriverId"));
-            System.out.println("看看ID " + id);
 
             String rs = htc.doGet("http://10.0.2.2:8339/checkPackageReadable?driverId=" + id);
-            System.out.println("拿到了吗？" + rs);
 
             //获取所有包裹，URL有误！
             String dataList = htc.doGet("http://10.0.2.2:8339/selectPackageByDriverId?driverId=" + id);
@@ -92,8 +88,6 @@ public class DriverWorkListViewModel extends ViewModel {
                 mes.setData(bundle);
                 mes.what = 0;
                 handler.sendMessageAtFrontOfQueue(mes);
-                //handler.sendMessage(mes);
-                System.out.println("线程结束");
 
             } catch (JSONException e) {
                 e.printStackTrace();
