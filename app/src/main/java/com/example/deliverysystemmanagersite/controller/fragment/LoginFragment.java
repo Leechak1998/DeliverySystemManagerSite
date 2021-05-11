@@ -101,9 +101,10 @@ public class LoginFragment extends Fragment {
 
     public void btnListener(){
         btnRegister.setOnClickListener(view -> {
+            if(rBtnManager.isChecked()){
             if (onButtonClick != null) {
                 onButtonClick.onClicking(btnRegister);
-            }
+            }}
         });
 
         btnLogin.setOnClickListener(view -> {
