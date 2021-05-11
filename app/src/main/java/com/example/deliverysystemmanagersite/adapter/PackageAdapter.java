@@ -43,7 +43,7 @@ public class PackageAdapter extends ArrayAdapter<Packages>{
         } else if (state.equals("delivered")){
             Status.setTextColor(Color.GREEN);
         } else {
-            Status.setTextColor(Color.YELLOW);
+            Status.setTextColor(Color.BLUE);
         }
         Vendor.setText(packages.getDeparture());
         Destination.setText(packages.getDestination());

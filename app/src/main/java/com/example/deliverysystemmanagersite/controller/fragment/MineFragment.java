@@ -55,14 +55,11 @@ public class MineFragment extends Fragment {
 
     private void btnListener(){
         btnOut.setOnClickListener(view->{
-            System.exit(0);
+            getActivity().finish();
         });
-        btnMoreInfo.setOnClickListener(v -> {
-
-        });
-        btnAboutUs.setOnClickListener(v -> {
-
-        });
+//        btnMoreInfo.setOnClickListener(v -> {
+//
+//        });
 
         btnModifyPassword.setOnClickListener(v -> {
 

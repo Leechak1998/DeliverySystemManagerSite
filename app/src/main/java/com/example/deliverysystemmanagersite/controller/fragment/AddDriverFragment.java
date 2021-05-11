@@ -55,10 +55,10 @@ public class AddDriverFragment extends Fragment {
             if(!userName.equals("")&&!email.equals("")&&!phone.equals("")){
             new Thread(() -> {
             HttpConnectionUtil htc = new HttpConnectionUtil();
-            String test = htc.doGet("http://10.0.2.2:8339/addDriverGet?username="+et_username.getText().toString()+"&email="+et_email.getText().toString()+"&phone="+et_phone.getText().toString());
+            String test = htc.doGet("http://10.0.2.2:8339/createDriver?driverName="+et_username.getText().toString()+"&email="+et_email.getText().toString()+"&telephoneNumber="+et_phone.getText().toString());
             try {
                 JSONObject jsonObject = new JSONObject(test);
-                String um = jsonObject.getString("username");
+                String um = jsonObject.getString("driverName");
                 System.out.println("username:" + um);
             } catch (JSONException e) {
                 e.printStackTrace();

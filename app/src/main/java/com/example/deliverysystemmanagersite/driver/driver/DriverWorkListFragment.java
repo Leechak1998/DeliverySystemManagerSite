@@ -91,7 +91,7 @@ public class DriverWorkListFragment extends Fragment {
         //点击对话框以外的区域是否让对话框消失
         builder.setCancelable(true);
         //设置正面按钮
-        builder.setPositiveButton("是的", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 //Toast.makeText(context, "你点击了是的", Toast.LENGTH_SHORT).show();
@@ -99,18 +99,10 @@ public class DriverWorkListFragment extends Fragment {
             }
         });
         //设置反面按钮
-        builder.setNegativeButton("不是", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 //Toast.makeText(context, "你点击了不是", Toast.LENGTH_SHORT).show();
-                dialog.dismiss();
-            }
-        });
-        //设置中立按钮
-        builder.setNeutralButton("保密", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                //Toast.makeText(context, "你选择了保密", Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
             }
         });

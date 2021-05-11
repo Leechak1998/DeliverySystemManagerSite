@@ -47,7 +47,7 @@ public class DriverWorkListAdapter extends ArrayAdapter<Packages> {
         } else if (state.equals("delivered")){
             Status.setTextColor(Color.GREEN);
         } else {
-            Status.setTextColor(Color.YELLOW);
+            Status.setTextColor(Color.BLUE);
         }
         return view;
     }

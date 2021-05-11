@@ -66,7 +66,7 @@ public class DriverFragment extends Fragment {
         listView.setOnItemClickListener((adapterView, view, i, l) -> {
             driverViewModel.selectDriver(pList.get(i));
 
-            Navigation.findNavController(root);
+            //Navigation.findNavController(root).navigate(R.id.navigation_DriverDetail);
             NavHostFragment.findNavController(fra).navigate(R.id.navigation_DriverDetail);
 
         });

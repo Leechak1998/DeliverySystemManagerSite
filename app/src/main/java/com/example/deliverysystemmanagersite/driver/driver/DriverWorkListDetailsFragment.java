@@ -77,11 +77,11 @@ public class DriverWorkListDetailsFragment extends Fragment {
         btn_finish = (Button) root.findViewById(R.id.btn_finish);
 
         btn_accept.setOnClickListener(view -> new Thread(() -> {
-            updateStatus(id);
+            updatePackageSendDate(id);
         }).start());
 
         btn_finish.setOnClickListener(view -> new Thread(() -> {
-            updateStatus(id);
+            updatePackageReceiveDate(id);
         }).start());
     }
 
@@ -89,10 +89,18 @@ public class DriverWorkListDetailsFragment extends Fragment {
         viewModel.sendReadingStatus(packageID);
     }
 
-    private void updateStatus(int pId){
+
+    private void updatePackageReceiveDate(int pId) {
         new Thread(() -> {
             HttpConnectionUtil htc = new HttpConnectionUtil();
-            htc.doGet("http://10.0.2.2:8339/updatePackageStatus?packageId=" + pId);
+            htc.doGet("http://10.0.2.2:8339/updatePackageReceiveDate?packageId=" + pId);
+        }).start();
+    }
+
+    private void updatePackageSendDate(int pId){
+        new Thread(() -> {
+            HttpConnectionUtil htc = new HttpConnectionUtil();
+            htc.doGet("http://10.0.2.2:8339/updatePackageSendDate?packageId=" + pId);
         }).start();
     }
 }

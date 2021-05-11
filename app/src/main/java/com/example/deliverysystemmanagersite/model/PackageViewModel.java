@@ -84,8 +84,7 @@ public class PackageViewModel extends ViewModel{
             HttpConnectionUtil htc = new HttpConnectionUtil();
             String dataList = htc.doGet("http://10.0.2.2:8339/selectPackageAll");
             try{
-                JSONArray JSON_obj = new JSONArray(dataList);
-                JSONArray PackageList = JSON_obj;
+                JSONArray PackageList = new JSONArray(dataList);
                 for (int i=0; i<PackageList.length(); i++) {
                     int packageId = PackageList.getJSONObject(i).getInt("packageId");
                     String driver = PackageList.getJSONObject(i).getString("driverId");

@@ -28,5 +28,30 @@
     <fragment android:id="@+id/navigation_mine_driver"
         android:name="com.example.deliverysystemmanagersite.driver.driver.DriverMineFragment"
         android:label="DriverMine"
-        tools:layout="@layout/fragment_driver_mine"/>
+        tools:layout="@layout/fragment_driver_mine">
+        <action
+            android:id="@+id/action_navigation_mine_driver_to_navigation_mine_driver_modify"
+            app:destination="@id/navigation_mine_driver_modify" />
+        <action
+            android:id="@+id/action_navigation_mine_driver_to_navigation_mine_driver_more"
+            app:destination="@id/navigation_mine_driver_more" />
+    </fragment>
+
+    <fragment android:id="@+id/navigation_mine_driver_modify"
+        android:name="com.example.deliverysystemmanagersite.driver.driver.DriverModifyPwFragment"
+        android:label="Modify password"
+        tools:layout="@layout/fragment_driver_modify_pw" >
+        <action
+            android:id="@+id/action_navigation_mine_driver_modify_to_navigation_mine_driver"
+            app:destination="@id/navigation_mine_driver" />
+    </fragment>
+
+    <fragment android:id="@+id/navigation_mine_driver_more"
+        android:name="com.example.deliverysystemmanagersite.driver.driver.DriverMoreFragment"
+        android:label="More information"
+        tools:layout="@layout/fragment_driver_more" >
+        <action
+            android:id="@+id/action_navigation_mine_driver_more_to_navigation_mine_driver"
+            app:destination="@id/navigation_mine_driver" />
+    </fragment>
 </navigation>
