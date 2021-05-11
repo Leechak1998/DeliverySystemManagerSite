@@ -8,21 +8,23 @@ public class Packages {
     private int packageId;
     private String driver;
     private String vendor;
-    private String tel;
+    private String sendDate;
     private String departure;
     private String destination;
     private String date;
     private String state;
+    private String readingStatus;
 
-    public Packages(int packageId,String departure, String driver, String tel, String vendor, String destination, String date, String state){
+    public Packages(int packageId,String departure, String driver, String sendDate, String vendor, String destination, String date, String state, String readingStatus){
         this.packageId =  packageId;
         this.driver = driver;
-        this.tel = tel;
+        this.sendDate = sendDate;
         this.vendor = vendor;
         this.destination = destination;
         this.departure = departure;
         this.state = state;
         this.date = date;
+        this.readingStatus = readingStatus;
     }
 
     public Packages(int packageId, String driver, String vendor, String destination,String state){
@@ -33,7 +35,6 @@ public class Packages {
         this.state = state;
         this.destination = destination;
     }
-
 
     public int getPackageId() {
         return packageId;
@@ -51,9 +52,6 @@ public class Packages {
         return destination;
     }
 
-    public String getTel() {
-        return tel;
-    }
 
     public String getDeparture() {
         return departure;
@@ -79,4 +77,19 @@ public class Packages {
         return date;
     }
 
+    public String getReadingStatus() {
+        return readingStatus;
     }
+
+    public void setReadingStatus(String readingStatus) {
+        this.readingStatus = readingStatus;
+    }
+
+    public String getSendDate() {
+        return sendDate;
+    }
+
+    public void setSendDate(String sendDate) {
+        this.sendDate = sendDate;
+    }
+}

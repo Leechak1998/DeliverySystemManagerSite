@@ -4,6 +4,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
@@ -29,6 +31,7 @@ public class AddFragment extends Fragment {
     private AddDriverFragment addDriverFragment;
     private AddVendorFragment addVendorFragment;
     private AddSiteFragment addSiteFragment;
+    private Fragment fra;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,6 +49,7 @@ public class AddFragment extends Fragment {
     }
 
     private void init(){
+        fra = this;
         btnPackages = (Button) root.findViewById(R.id.btnPackage);
         btnDriver = (Button) root.findViewById(R.id.btnDriver);
         btnVendor = (Button) root.findViewById(R.id.btnVendor);
@@ -66,17 +70,23 @@ public class AddFragment extends Fragment {
                     .commit();
         });
 
-        btnDriver.setOnClickListener(view -> getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.dif_add_fragment,addDriverFragment)
-                .commit());
+        btnDriver.setOnClickListener(view -> {
+            getActivity().getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.dif_add_fragment, addDriverFragment)
+                    .commit();
+        });
 
-        btnVendor.setOnClickListener(view -> getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.dif_add_fragment,addVendorFragment)
-                .commit());
+        btnVendor.setOnClickListener(view -> {
+            getActivity().getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.dif_add_fragment, addVendorFragment)
+                    .commit();
+        });
 
-        btnSite.setOnClickListener(view -> getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.dif_add_fragment,addSiteFragment)
-                .commit());
+        btnSite.setOnClickListener(view -> {
+            getActivity().getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.dif_add_fragment, addSiteFragment)
+                    .commit();
+        });
     }
 
 }

@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.deliverysystemmanagersite.MainActivity;
+import com.example.deliverysystemmanagersite.controller.activity.MainActivity;
 import com.example.deliverysystemmanagersite.R;
 import com.example.deliverysystemmanagersite.db.AppDatabase;
 import com.example.deliverysystemmanagersite.model.User;

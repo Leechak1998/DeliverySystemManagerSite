@@ -54,14 +54,13 @@
 
     </LinearLayout>
 
-    <LinearLayout
+    <RadioGroup
         android:id="@+id/ly3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/ly2"
         android:gravity="center"
-        android:orientation="horizontal"
-        android:paddingTop="10dp">
+        android:orientation="horizontal">
 
         <RadioGroup
             android:layout_width="match_parent"
@@ -85,9 +84,10 @@
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:text="Driver" />
+
         </RadioGroup>
 
-    </LinearLayout>
+    </RadioGroup>
 
     <LinearLayout
         android:id="@+id/ly4"

@@ -59,7 +59,6 @@ public class PackageViewModel extends ViewModel{
     }
 
     public List<Packages> getText() {
-        System.out.println("when???/");
         return packagesList;
     }
 
@@ -73,7 +72,6 @@ public class PackageViewModel extends ViewModel{
                     SerializableList s = new SerializableList();
                     s = (SerializableList)bundle.getSerializable("data");
                     packagesList = s.getPackagesList();
-                    //System.out.println("----id:" + packagesList.get(0).getPackageId() + "destination" + packagesList.get(0).getDestination());
                     break;
 
             }
@@ -84,7 +82,6 @@ public class PackageViewModel extends ViewModel{
     public void initPack(){
         new Thread(() -> {
             HttpConnectionUtil htc = new HttpConnectionUtil();
-            //127.0.0.1:8339/selectPackageAll
             String dataList = htc.doGet("http://10.0.2.2:8339/selectPackageAll");
             try{
                 JSONArray JSON_obj = new JSONArray(dataList);
@@ -99,7 +96,8 @@ public class PackageViewModel extends ViewModel{
                     String destination = PackageList.getJSONObject(i).getString("destination");
                     String date = PackageList.getJSONObject(i).getString("receiveDate");
                     String state = PackageList.getJSONObject(i).getString("state");
-                    packagesList.add(new Packages(packageId,departure,driver,tel,vendor,destination,date,state));
+                    String readingStatus = PackageList.getJSONObject(i).getString("readable");
+                    packagesList.add(new Packages(packageId,departure,driver,tel,vendor,destination,date,state,readingStatus));
 
                 }
                 SerializableList serializableList = new SerializableList();

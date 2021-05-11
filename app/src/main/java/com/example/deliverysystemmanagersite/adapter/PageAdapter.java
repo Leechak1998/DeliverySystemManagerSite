@@ -27,27 +27,21 @@ public class PageAdapter extends FragmentPagerAdapter {
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        System.out.println("-------" + position + "---------");
         Fragment fragment;
         switch (position) {
             case 0:
-                System.out.println("返回第一个");
                 fragment = PackageFragment.newInstance();
                 break;
             case 1:
-                System.out.println("返回第二个");
                 fragment = DriverFragment.newInstance();
                 break;
             case 2:
-                System.out.println("返回第三个");
                 fragment = VendorFragment.newInstance();
                 break;
             case 3:
-                System.out.println("返回第四个");
                 fragment = SiteFragment.newInstance();
                 break;
             default:
-                System.out.println("返回null");
                 fragment = null;
                 break;
         }

@@ -1,5 +1,6 @@
 package com.example.deliverysystemmanagersite.driver.driver;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -23,6 +24,8 @@ public class DriverWorkListViewModel extends ViewModel {
     private final MutableLiveData<String> selected = new MutableLiveData<String>();
     private final MutableLiveData<Packages> selectedPackage = new MutableLiveData<>();
     private List<Packages> packagesList = new ArrayList<>();
+    public String readStatus = "";
+    private int flag = 0;
 
     Handler handler = new Handler(){
         @Override
@@ -31,10 +34,15 @@ public class DriverWorkListViewModel extends ViewModel {
             switch (msg.what){
                 case 0:
                     Bundle bundle = msg.getData();
-                    SerializableList s = new SerializableList();
-                    s = (SerializableList)bundle.getSerializable("data");
+                    SerializableList s = (SerializableList)bundle.getSerializable("data");
                     packagesList = s.getPackagesList();
-                    System.out.println("----id:" + packagesList.get(0).getPackageId() + "destination" + packagesList.get(0).getDestination());
+                    readStatus = bundle.getString("reading_status");
+//                    System.out.println("拿到package list 和 readstatus:" + readStatus);
+                    break;
+                case 1:
+                    Bundle bundle1 = msg.getData();
+                    readStatus = bundle1.getString("reading_status");
+                    System.out.println("=====readstatus:" + readStatus);
                     break;
 
             }
@@ -45,12 +53,19 @@ public class DriverWorkListViewModel extends ViewModel {
         init();
     }
 
-    private void init() {
-        new Thread(() -> {
-            System.out.println("22222222");
+    public void init() {
+        Thread thread = new Thread(() -> {
+            System.out.println("优先启动了吗");
+
             HttpConnectionUtil htc = new HttpConnectionUtil();
-            //127.0.0.1:8339/selectPackageAll
-            String dataList = htc.doGet("http://10.0.2.2:8339/selectPackageAll");
+            int id = Integer.parseInt( htc.doGet("http://10.0.2.2:8339/retrieveDriverId"));
+            System.out.println("看看ID " + id);
+
+            String rs = htc.doGet("http://10.0.2.2:8339/checkPackageReadable?driverId=" + id);
+            System.out.println("拿到了吗？" + rs);
+
+            //获取所有包裹，URL有误！
+            String dataList = htc.doGet("http://10.0.2.2:8339/selectPackageByDriverId?driverId=" + id);
             try{
                 JSONArray JSON_obj = new JSONArray(dataList);
                 JSONArray PackageList = JSON_obj;
@@ -58,30 +73,44 @@ public class DriverWorkListViewModel extends ViewModel {
                     int packageId = PackageList.getJSONObject(i).getInt("packageId");
                     String driver = PackageList.getJSONObject(i).getString("driverId");
                     String vendor = PackageList.getJSONObject(i).getString("vendorName");
-//                        String tel = PackageList.getJSONObject(i).getString("tel");
-                    String tel = "123444";
+                    String sendDate = PackageList.getJSONObject(i).getString("sendDate");
                     String departure = PackageList.getJSONObject(i).getString("departure");
                     String destination = PackageList.getJSONObject(i).getString("destination");
                     String date = PackageList.getJSONObject(i).getString("receiveDate");
                     String state = PackageList.getJSONObject(i).getString("state");
-                    packagesList.add(new Packages(packageId,departure,driver,tel,vendor,destination,date,state));
-
+                    String readingStatus = PackageList.getJSONObject(i).getString("readable");
+                    packagesList.add(new Packages(packageId,departure,driver,sendDate,vendor,destination,date,state,readingStatus));
                 }
+
                 SerializableList serializableList = new SerializableList();
                 serializableList.setPackagesList(packagesList);
 
                 Message mes = new Message();
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("data" ,serializableList);
-
+                bundle.putString("reading_status", rs);
                 mes.setData(bundle);
                 mes.what = 0;
-                handler.sendMessage(mes);
+                handler.sendMessageAtFrontOfQueue(mes);
+                //handler.sendMessage(mes);
+                System.out.println("线程结束");
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        }).start();
+        });
+
+        thread.setPriority(Thread.MAX_PRIORITY);
+        thread.start();
+
+    }
+
+    public String getReadStatus(){
+        if (flag == 0){
+            flag ++;
+            return readStatus;
+        }
+        return "-1";
     }
 
     public void select(String s) {
@@ -103,6 +132,13 @@ public class DriverWorkListViewModel extends ViewModel {
 
     public LiveData<Packages> getSelectedPackage() {
         return selectedPackage;
+    }
+
+    public void sendReadingStatus(int readingStatus){
+        new Thread(() -> {
+            HttpConnectionUtil htc = new HttpConnectionUtil();
+            htc.doGet("http://10.0.2.2:8339/updatePackageReadable?packageId=" + readingStatus);
+        }).start();
     }
 
 }

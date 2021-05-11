@@ -42,15 +42,19 @@ public class DriverWorkListDetailsFragment extends Fragment {
 //            textView.setText(viewModel.getSelected().getValue());
             init();
             System.out.println("----"+viewModel.getSelectedPackage().getValue().getDeparture());
-
+            String readingStatus = viewModel.getSelectedPackage().getValue().getReadingStatus();
+            int id = viewModel.getSelectedPackage().getValue().getPackageId();
+            viewModel.getSelectedPackage().getValue().getPackageId();
             et_departure.setText(viewModel.getSelectedPackage().getValue().getDeparture());
             et_destination.setText(viewModel.getSelectedPackage().getValue().getDestination());
             et_name.setText(viewModel.getSelectedPackage().getValue().getDriver());
-            et_phone.setText(viewModel.getSelectedPackage().getValue().getTel());
-            et_id.setText(viewModel.getSelectedPackage().getValue().getPackageId()+"");
+            et_phone.setText(viewModel.getSelectedPackage().getValue().getSendDate());
             et_vendor.setText(viewModel.getSelectedPackage().getValue().getVendor());
             et_date.setText(viewModel.getSelectedPackage().getValue().getDate());
-            et_status.setText(viewModel.getSelectedPackage().getValue().getStringState(viewModel.getSelectedPackage().getValue().getState()));
+            et_status.setText(viewModel.getSelectedPackage().getValue().getState());
+            if (readingStatus.equals("0")){
+                changeReadingStatus(id);
+            }
         });
 
         return root;
@@ -65,5 +69,9 @@ public class DriverWorkListDetailsFragment extends Fragment {
         et_vendor = (EditText) root.findViewById(R.id.et_vendor);;
         et_date  = (EditText) root.findViewById(R.id.et_date);;
         et_status = (EditText) root.findViewById(R.id.et_status);;
+    }
+
+    private void changeReadingStatus(int packageID){
+        viewModel.sendReadingStatus(packageID);
     }
 }

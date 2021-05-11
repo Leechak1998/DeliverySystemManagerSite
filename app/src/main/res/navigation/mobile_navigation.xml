@@ -16,6 +16,7 @@
         android:name="com.example.deliverysystemmanagersite.controller.fragment.AddFragment"
         android:label="@string/title_add"
         tools:layout="@layout/fragment_add" >
+
     </fragment>
 
     <fragment

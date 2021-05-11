@@ -189,30 +189,36 @@
         android:paddingTop="20dp"
         android:textColor="@color/black"/>
 
+    <Space
+        android:id="@+id/spa3"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_below="@id/et_status"/>
+
     <Button
+        android:id="@+id/btn_accept"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Accept Task"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
         android:textColor="@color/white"
-        android:layout_marginEnd="30dp"
-        android:layout_marginStart="30dp"
         android:background="@drawable/edit_btn_selector"
-        android:layout_marginBottom="250dp"></Button>
+        android:layout_below="@id/spa3" />
+
+    <Space
+        android:id="@+id/spa4"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_below="@id/btn_accept"/>
+
 
     <Button
+        android:id="@+id/btn_finish"
         android:textColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="30dp"
-        android:layout_marginStart="30dp"
         android:text="Finish Task"
         android:background="@drawable/edit_btn_selector"
-        android:layout_marginBottom="190dp">
+        android:layout_below="@id/spa4"/>
 
-    </Button>
 
 </RelativeLayout>

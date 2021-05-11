@@ -1,4 +1,4 @@
-package com.example.deliverysystemmanagersite;
+package com.example.deliverysystemmanagersite.controller.activity;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
+import com.example.deliverysystemmanagersite.R;
 import com.example.deliverysystemmanagersite.controller.fragment.LoginFragment;
 import com.example.deliverysystemmanagersite.controller.fragment.RegisterFragment;
 import com.example.deliverysystemmanagersite.db.myDatabase;
